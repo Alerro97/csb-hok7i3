@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LISTA DE FETICHES</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTAvMjEvMTV5ehY1AAAAZElEQVQ4jaWTwQ3AIAwDbcT+I9f9hjYQA/mAkO7igKAACWdFAF0A2gb0hP0uCyTATyAJSoaK5xGyEmTC9lktmORUdAQvBQ5cJshktoDk0HkmKRNUEmuE6ztYVXe7bT+jW7z9zi8qYiodCjCHKgAAAABJRU5ErkJggg=="
+    />
+    <style>
+      body {
+        font-family: "Verdana", "Arial";
+        font-size: 12px;
+      }
+      h2 {
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+      th {
+        border: solid #999 1px;
+        border-right: none;
+        margin: 0px;
+        padding: 4px;
+        background-color: #666;
+        color: #fff;
+      }
+      th.choicesCol {
+        box-sizing: border-box;
+        width: 125px;
+      }
+      th + th {
+        border-left: none;
+      }
+      th:last-child {
+        border-right: solid #999 1px;
+      }
+      td {
+        border-left: solid #999 1px;
+        border-bottom: solid #999 1px;
+        border-right: solid #999 1px;
+        margin: 0px;
+        padding: 4px;
+        padding-right: 2px;
+      }
+      @-moz-document url-prefix() {
+        td {
+          padding: 3.3px;
+        }
+      }
+      td + td {
+        border-left-style: none;
+      }
+      .choice {
+        box-sizing: border-box;
+        width: 15px;
+        height: 15px;
+        opacity: 0.35;
+        overflow: hidden;
+        text-indent: 100px;
+        border: solid #000 1px;
+        border-radius: 50%;
+        outline-style: none !important;
+        vertical-align: middle;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 0;
+        padding: 0;
+      }
+      .choices .choice {
+        transition: all 0.3s ease-in-out;
+      }
+      .choice + .choice {
+        margin-left: 5px;
+      }
+      .choices .choice:hover {
+        opacity: 0.75;
+      }
+      .choice.selected,
+      .selected > .choice {
+        opacity: 1;
+        border-width: 2px;
+      }
+
+      .legend {
+        vertical-align: middle;
+        font-size: 14px;
+      }
+      .legend div {
+        display: inline-block;
+      }
+      .legend .choice {
+        opacity: 1;
+        cursor: default;
+      }
+      .legend-text {
+        vertical-align: middle;
+      }
+
+      #ExportWrapper {
+        width: 460px;
+        height: 36px;
+      }
+      #URL {
+        display: none;
+        position: absolute;
+        top: 3px;
+        box-sizing: border-box;
+        width: 300px;
+        height: 30px;
+        border-radius: 4px;
+        border: solid #ccc 1px;
+        font-size: 16px;
+        padding: 10px;
+        text-align: center;
+        color: #666;
+        font-weight: bold;
+      }
+      #Export {
+        position: absolute;
+        left: 310px;
+        box-sizing: border-box;
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #4980ae;
+        font-size: 18px;
+        width: 150px;
+        height: 36px;
+        border-style: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+      #Export:hover {
+        opacity: 0.85;
+      }
+      #Loading {
+        display: none;
+        overflow: visible;
+        line-height: 26px;
+        font-size: 16px;
+        color: #999;
+        font-weight: bold;
+        position: absolute;
+        top: 4px;
+        left: 220px;
+      }
+      #Loading:before {
+        content: "";
+        position: absolute;
+        box-sizing: border-box;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: solid #999 2px;
+        border-top-color: transparent;
+        border-left-color: #ccc;
+        border-right-color: #666;
+        animation: spin 0.5s infinite linear;
+        margin-left: -40px;
+      }
+      @media (min-width: 1700px) {
+        .legend {
+          position: absolute;
+          top: 7px;
+          left: 160px;
+        }
+        .legend div {
+          width: 130px;
+        }
+        #ExportWrapper {
+          position: absolute;
+          top: -3px;
+          right: 46px;
+        }
+        h1 {
+          margin-bottom: 0;
+        }
+      }
+      @media (max-width: 1700px) and (min-width: 800px) {
+        .legend div {
+          width: 130px;
+          padding-bottom: 10px;
+        }
+        #ExportWrapper {
+          position: absolute;
+          top: -3px;
+          right: 46px;
+        }
+      }
+      @media (max-width: 800px) and (min-width: 598px) {
+        .legend div {
+          width: 180px;
+          padding-bottom: 10px;
+          padding-left: 10px;
+        }
+        #ExportWrapper {
+          position: relative;
+          margin-top: 10px;
+          margin-left: 5px;
+        }
+        #URL {
+          left: 155px;
+          width: 190px;
+          font-size: 10px;
+        }
+        #Export {
+          left: 0px;
+        }
+        #Loading {
+          left: 230px;
+        }
+      }
+      @media (max-width: 597px) {
+        body {
+          font-size: 10px;
+        }
+        table {
+          min-width: 345px;
+        }
+        .legend div {
+          width: 150px;
+          padding-bottom: 10px;
+          padding-left: 10px;
+        }
+        #ExportWrapper {
+          position: relative;
+          margin-top: 10px;
+          margin-left: 0px;
+          width: 345px;
+        }
+        #URL {
+          left: 155px;
+          width: 190px;
+          font-size: 10px;
+        }
+        #Export {
+          left: 0px;
+        }
+        #Loading {
+          left: 230px;
+        }
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+
+      #ExportWrapper :last-child:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .kinkCategory {
+      }
+      .col {
+        float: left;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 5px;
+      }
+      .col.col25 {
+        width: 25%;
+      }
+      .col.col33 {
+        width: 33.33333%;
+      }
+      .col.col50 {
+        width: 50%;
+      }
+      .col.col100 {
+        width: 100%;
+        padding: 0px;
+      }
+      .widthWrapper {
+        max-width: 1700px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+      }
+      #Edit {
+        width: 18px;
+        height: 18px;
+        background-color: transparent;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTAvMTIvMTUsb8MLAAABaElEQVQ4jZWUvY3jMBCF390mzpQ6I1wBS5A6oDuQOxi4Ap4rUAlqwR1M7IhQBYRCR1To7G1giJBkes/7gElGg4/zK7AgVaWI0FpLAIwxlsJWwtbRdR0BrKzruvw9pUTnHEMIP4NCCC8gay2991TVnGVVVSvYCyil9AJ6Z0sY5nJCCEwp5Rc/NefcE6Sqb4OMMRQRigiNMcWSU0pPkIgUIW3b5gmqKkmybdtVzOwnSZRKMcaQJOu6zr66rklylZn3PoO+7vf7P2x0Op2w2+1wuVyybxxHNE0DALjdbgCAaZrweDyw3+/xN8aIvu9hrd3y/qthGHA+n3E4HJDH773/dWnLpmfQdnqfNHs2EeEfkpymCU3TYBiGVerGGByPRwDA9XrFOI7FElX1WZpz7ldLOO9PCCHfIeb7qqrqY9C8hEvlHi1h1lqqKr33xZPZXv4KNMOcc6sX+77/8bdSBJUUY8xZisjqLJb6Bpjss/W5PAkOAAAAAElFTkSuQmCC");
+        background-repeat: no-repeat;
+        float: left;
+        border-style: none;
+        outline-style: none !important;
+        margin-top: 6px;
+        margin-right: 4px;
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      #Edit:hover {
+        opacity: 1;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+      }
+      #EditOverlay #Kinks {
+        box-sizing: border-box;
+        position: absolute;
+        top: 10px;
+        bottom: 50px;
+        width: 330px;
+        left: 50%;
+        margin-left: -165px;
+        resize: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace, "Courier new", Courier;
+      }
+      #EditOverlay #KinksOK {
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 10px;
+        width: 330px;
+        height: 30px;
+        left: 50%;
+        margin-left: -165px;
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #4980ae;
+        font-size: 18px;
+        border-style: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #InputOverlay {
+        text-align: center;
+        white-space: nowrap;
+      }
+      #InputOverlay:before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em;
+      }
+      #InputOverlay .widthWrapper {
+        display: inline-block;
+        vertical-align: middle;
+        width: 400px;
+        text-align: left;
+        max-width: 100%;
+      }
+      #InputOverlay .widthWrapper #InputCurrent,
+      #InputOverlay .widthWrapper .kink-simple {
+        display: block;
+        box-sizing: border-box;
+        padding: 10px;
+        background-color: #eee;
+      }
+      #InputOverlay .widthWrapper .kink-simple {
+        position: relative;
+        height: 40px;
+        line-height: 20px;
+        cursor: pointer;
+      }
+      #InputOverlay .widthWrapper .kink-simple .choice {
+        margin-right: 5px;
+      }
+      #InputOverlay .widthWrapper .kink-simple .txt-category {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        text-transform: uppercase;
+        font-size: 90%;
+        font-weight: bold;
+        opacity: 0.6;
+        line-height: 1em;
+      }
+      #InputOverlay .widthWrapper .kink-simple .txt-field,
+      #InputOverlay .widthWrapper .kink-simple .txt-kink {
+        vertical-align: middle;
+      }
+      #InputOverlay .widthWrapper .kink-simple .txt-field:empty {
+        display: none;
+      }
+      #InputOverlay .widthWrapper .kink-simple .txt-field:before {
+        content: "(";
+      }
+      #InputOverlay .widthWrapper .kink-simple .txt-field:after {
+        content: ") ";
+      }
+
+      #InputOverlay .widthWrapper #InputPrevious .kink-simple:first-child,
+      #InputOverlay .widthWrapper #InputNext .kink-simple:nth-child(3) {
+        background-color: #bbb;
+        font-size: 10px;
+        margin-left: 12px;
+        margin-right: 12px;
+        height: 33px;
+      }
+      #InputOverlay .widthWrapper #InputPrevious .kink-simple:nth-child(2),
+      #InputOverlay .widthWrapper #InputNext .kink-simple:nth-child(2) {
+        background-color: #ccc;
+        font-size: 11px;
+        margin-left: 6px;
+        margin-right: 6px;
+        height: 37px;
+      }
+      #InputOverlay .widthWrapper #InputPrevious .kink-simple:nth-child(3),
+      #InputOverlay .widthWrapper #InputNext .kink-simple:first-child {
+        background-color: #ddd;
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+      #InputOverlay .widthWrapper #InputPrevious .kink-simple:first-child {
+        padding-bottom: 4px;
+        padding-top: 7px;
+      }
+      #InputOverlay .widthWrapper #InputNext .kink-simple:nth-child(3) {
+        padding-top: 4px;
+      }
+      #InputOverlay .widthWrapper #InputPrevious .kink-simple:nth-child(2) {
+        padding-bottom: 7px;
+        padding-top: 9px;
+      }
+      #InputOverlay .widthWrapper #InputNext .kink-simple:nth-child(2) {
+        padding-top: 7px;
+      }
+
+      #InputPrevious .kink-simple {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+      }
+      #InputNext .kink-simple {
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      #InputOverlay .widthWrapper #InputCurrent {
+        position: relative;
+      }
+      #InputOverlay .widthWrapper #InputCurrent .closePopup {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        border-style: none;
+        background-color: transparent;
+        font-size: 30px;
+        cursor: pointer;
+        outline-style: none !important;
+        opacity: 0.65;
+      }
+      #InputOverlay .widthWrapper #InputCurrent .closePopup:hover {
+        opacity: 1;
+      }
+      #InputOverlay .widthWrapper #InputCurrent h2 {
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin: 0;
+      }
+      #InputOverlay .widthWrapper #InputCurrent h3 {
+        margin-top: 3px;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+      #InputOverlay .widthWrapper #InputCurrent #InputValues .big-choice {
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.75);
+        border-radius: 4px;
+        margin-top: 5px;
+        cursor: pointer;
+      }
+      #InputOverlay
+        .widthWrapper
+        #InputCurrent
+        #InputValues
+        .big-choice.selected {
+        font-weight: bold;
+      }
+      #InputOverlay
+        .widthWrapper
+        #InputCurrent
+        #InputValues
+        .big-choice.selected
+        .choice {
+        opacity: 1;
+      }
+      #InputOverlay .widthWrapper #InputCurrent #InputValues .big-choice:hover {
+        padding: 8px;
+        border: solid #999 2px;
+        background-color: rgba(255, 255, 255, 1);
+      }
+      #InputOverlay
+        .widthWrapper
+        #InputCurrent
+        #InputValues
+        .big-choice
+        .btn-num-text {
+        float: right;
+        display: inline-block;
+        border: solid #ccc 1px;
+        text-align: center;
+        width: 16px;
+        border-radius: 3px;
+      }
+      #StartBtn {
+        position: absolute;
+        top: -3px;
+        right: 5px;
+        box-sizing: border-box;
+        width: 36px;
+        height: 36px;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMTAvMTUvMTWxuPuyAAACcElEQVRYhe3X30tTYRzH8fdz3FYTd1xamAuTLDbM3EwqNMnoQgxydVH0A6Ks/oG6Mvp1n1flVUJE3pjUTVPCCJxmEKTWRAuCApujkmhJoZu57ZwuwsCaOx7nbBf73D2H7/PldfjCc54j6CxXSaNI/xvwdzIgrWRAWsmAtJJ2IIOe4iLzejoqmym1lDAZ+UFEicatC8Vm6A++5Jb/Pm+nxlIHatl2keo8FwJBriGHREe8U7bjyrWz7/m51IHq1lWjqire4AAvJkf5qczGrduUvYHTRQdxyQ5dGN0gg8hCBc4MXyUQnliwbqO5kOO2/ZzyXQagONvGcO0DLrxp5m7As3ygxUZB4aTvEt1fnuGSHQgEnoleKnIdEEi8NymQ6h7555nocvJt9jsPJ3o4XFhHq/MaAkFF/xE+hD5p9kwKJLqccZ+HYjMcs9XTXnkdSUi0BToXhYEUnUM7rFvnYRqHryx6b1Ig1T2C6h4h0uDjqK0eSUi4ZAc9VbeRhMS76XFdGFjmkblkB3277yAbc3g/PY7D69bdc9lGNoexGi10fOzG7nWTb7KuLCh8YJAyy2YEgqE997AaLbQFOjnxqom1JiueXTd190xqZOZHOwFoLDrEVCxMm9/D+dfNSELiSVUrpZaSlQXNpTc4wJrHNX/W+SYr5bKdqBr/45soSxqZQWTNW/tDn+etV0umpbT93VtP8awSwZhl4EZZE/7wwgddsdmGJAQxRUktyPt1gIaCvTQU1Ca8eghAVVX6goO6QULPn2vBqnyatpylJm87RrHwu0TVKE+DQ7SMtSe8FSQNWomk3Z06A9JKBqSVDEgraQf6BTg8uT5wSV/pAAAAAElFTkSuQmCC");
+        border-style: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #StartBtn:hover {
+        opacity: 0.8;
+      }
+      @media (max-height: 500px) {
+        #InputPrevious,
+        #InputNext {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widthWrapper">
+      <button id="Edit"></button>
+      <h1>LISTA DE FETICHES AVANZADA</h1>
+	  <div class="widthWrapper">
+      <h1>creditos: Alisios#8575</h1>
+      <div class="legend">
+        <div>
+          <span data-color="#FFFFFF" class="choice notEntered"></span>
+          <span class="legend-text">No Asignado</span>
+        </div>
+        <div>
+          <span data-color="#6DB5FE" class="choice favorite"></span>
+          <span class="legend-text">Favorito</span>
+        </div>
+        <div>
+          <span data-color="#23FD22" class="choice like"></span>
+          <span class="legend-text">Me gusta</span>
+        </div>
+        <div>
+          <span data-color="#FDFD6B" class="choice okay"></span>
+          <span class="legend-text">Okay</span>
+        </div>
+        <div>
+          <span data-color="#DB6C00" class="choice maybe"></span>
+          <span class="legend-text">Quizas</span>
+        </div>
+        <div>
+          <span data-color="#920000" class="choice no"></span>
+          <span class="legend-text">No</span>
+        </div>
+      </div>
+      <div id="ExportWrapper">
+        <input type="text" id="URL" />
+        <button id="Export">Export</button>
+        <div id="Loading">Loading</div>
+      </div>
+      <button id="StartBtn"></button>
+      <div id="InputList"></div>
+    </div>
+    <div id="EditOverlay" class="overlay">
+      <textarea id="Kinks">
+# Tamaño de la parte del cuerpo
+(Pequeño, Grande)
+* Culos
+* Pollas
+* Bolas
+* Pechos
+
+#Cuerpos
+(General)
+* Flaco
+? Expresa un interés por los personajes que son delgados, flacos o esbeltos.
+* Regordeta
+? Expresa su interés por los personajes redondos, rellenos y regordetes.
+* Penes circuncidados
+? Expresa su interés por los penes circuncidados o con muy poco prepucio.
+* Gafas
+? Prefiere a los personajes que llevan gafas.
+* Musculosos
+? Expresa su interés por personajes de complexión fuerte y/o atlética.
+* Piercings no sexuales
+? Mantener relaciones sexuales con un personaje que tiene piercings en partes de su cuerpo que no son de naturaleza sexual, como por ejemplo la lengua, las orejas, el ombligo, etc.
+* Vello púbico
+? Expresa interés por el vello púbico, posiblemente en grandes o excesivas cantidades.
+* Trapitos/femboys
+? Expresa un interés por los personajes masculinos que son femeninos y sutilmente definidos.
+* Gemelos
+? Expresa un interés en dos o más personajes que son idénticos, a menudo hermanos, que pueden o no ser interpretados por el mismo jugador.
+* Pollas sin circuncidar
+? Expresa un interés en penes que no han sido circunscritos y tienen una gran cantidad de prepucio.
+* Muy gordos
+? Expresa su interés por personajes con sobrepeso u obesidad excepcional.
+* Compañeros muy delgados
+? Expresa su interés por personajes excepcionalmente delgados o flacos.
+* Compañeros muy musculosos
+? Expresa su interés por personajes excepcionalmente musculosos o tonificados.
+* Voluptuosidad
+? Expresa su interés por personajes con caderas más anchas que la media y grandes nalgas.
+
+#Ropa
+(Yo, compañero)
+* Vestirse de forma cruzada
+? Participar en un RP en el que uno o más personajes se visten con la ropa del género opuesto al suyo.
+* Sexo con ropa
+? Participar en un juego de rol en el que tú y/o tu pareja no se desnudan durante la interacción sexual.
+* Tacones
+? Expresa su interés en la inclusión de zapatos de tacón en el contexto sexual de un RP, o su interés en que los personajes los lleven.
+* Látex
+? El uso de látex y/o material de goma como ropa
+* Cuero
+? Expresa un interés en la inclusión de ropa de cuero en el contexto sexual de un RP, o un interés en que los personajes lo lleven.
+* Lencería
+? Expresa su interés en la inclusión de ropa interior en el contexto sexual de un juego de rol, o su interés en que los personajes la lleven.
+* Máscaras
+? El uso de máscaras (quirúrgicas, BDSM, máscaras de gas, etc.), normalmente para ocultar la identidad del portador, en una escena de juego de rol.
+* Medias
+? Expresa un interés en la inclusión de medias en el contexto sexual de un RP, o un interés en que los personajes las usen.
+* Uniforme/disfraz
+? Expresa su interés en la inclusión de uniformes o trajes en el contexto sexual de un RP, o su interés en que los personajes los lleven.
+
+#Parejas
+(Yo, Compañero)
+* como Hombre
+* como Mujer
+* como Femboy
+* como Futa
+* como HaM trans
+* como MaH trans
+* como hombre y mujer
+* como múltiples hombres
+* como múltiples mujeres
+* como múltiples hombres y mujeres
+
+
+#Generalidades
+(Dar, Recibir)
+* Morder
+? El acto de morder o ser mordido; a veces doloroso, a veces juguetón.
+* Preservativos
+? El uso de preservativos de cualquier manera; normalmente se refiere a la preferencia por el uso de preservativos durante la penetración, pero también puede referirse al juego con preservativos, en el que un preservativo (normalmente relleno), se utiliza como juguete sexual; o, el llenado de preservativos con fluidos, como el semen.
+* Consensual
+? Una preferencia para que las interacciones sexuales entre los personajes en un RP sean totalmente consentidas, por la propia voluntad de sus personajes.
+* Abrazos
+? Personajes que muestran su afecto a través de abrazos, acurrucamientos y otras formas de cercanía física.
+* La cavidad y/o la garganta, a veces provocando un reflejo nauseoso, o siendo el receptor de tales acciones.
+* Hablar sucio
+? El acto de hablar de manera típicamente explícita para provocar la estimulación sexual de un participante, a veces uno mismo; a menudo en el contexto de la seducción o los juegos preliminares.
+* Atracar
+? Inserción fálica en la vaina y/o prepucio de otra persona.
+* Bordear
+? Mantenerse al borde del clímax sin llegar al orgasmo
+* Juego de orejas
+? Interés en el juego de roles donde las orejas juegan un papel importante. Esto puede implicar chupar, acariciar, respirar/susurrar en ellas, tirar de ellas, o cualquier otro tipo de interacción centrada en las orejas.
+* Femboys
+? Machos afeminados y femeninos.
+* Flexibilidad/Contorcionismo
+? Flexibilidad excepcional o irreal, típicamente utilizada para lograr posiciones sexuales extremadamente difíciles o imposibles para obtener la máxima estimulación.
+* Sentarse en la cara
+? Una práctica sexual en la que alguien se sienta sobre la cara de otro personaje con sus nalgas o genitales, haciendo que la persona se asfixie, a veces hasta el punto de asfixiarse; a menudo se hace como forma de forzar la gratificación oral.
+* Facials
+? El acto de correrse directamente en la cara.
+* Frotamiento
+? El acto de moler al menos dos penes uno contra el otro para la gratificación sexual.
+* Transformación de género
+? Cambios de sexo o género, a veces de forma voluntaria, a veces involuntaria. Abarca tanto los cambios mágicos y de ciencia ficción, como la reasignación de género más realista.
+* Pajas / Dedos
+? Estimulación sexual mediante el contacto físico directo de las manos o los dedos con los genitales.
+* Tragar
+? El acto de consumir oralmente el semen, ya sea directa o indirectamente de un pene.
+* Tragarse el semen
+? El acto de colocar un pene entre las nalgas y presionarlas contra él, deslizándolo entre ellas para alcanzar la satisfacción sexual.
+* Hielo
+? El uso de hielo de cualquier manera durante el sexo, normalmente como una forma de juego erótico previo.
+* Socios inteligentes
+? Muestra una preferencia por parejas que tienen niveles particularmente altos de inteligencia, ingenio, astucia y habilidades de manipulación.
+* Besos
+? Expresa su interés por besar o ser besado por otro personaje, lo que normalmente denota un beso francés.
+* Cuero
+? El uso de cuero, a menudo en una situación de bondage; típicamente incluye prendas de cuero o equipo asociado con los dominantes, así como equipo de arnés.
+* Lamer
+? El acto de un personaje de lamer a otro. Puede o no ser sexual; cuando es sexual, a menudo en áreas del cuerpo que son sexuales, incluyendo pero no limitado a los pezones, pechos, ano, genitales, etc.
+* Masturbación
+? El acto de estimularse sexualmente, generalmente utilizando el contacto físico de las manos o los dedos con los genitales.
+* Juego con el ombligo
+? Participar en actos sexuales que implican el placer derivado del ombligo de un personaje; a menudo se refiere a lamer o tocar el ombligo.
+* Fotografía/grabación en vídeo
+? El acto de grabar visualmente una escena entre los participantes, a menudo como una forma de humillación, fetichismo exhibicionista y/o chantaje/extorsión.
+* Romance/afecto
+? Mostrar o expresar amor o fuerte afecto, pasión, ya sea durante el acto amoroso o durante las escenas normales.
+* Fumar
+? Se refiere al acto de fumar y/o recibir placer de un aspecto de fumar o del humo durante un RP.
+* Calcetines/Medias
+? Expresa un interés en la inclusión de calcetines y/o medias en el contexto sexual de un sexrol, o un interés en que los personajes los lleven.
+* Strip Tease
+? El acto de quitarse la ropa de forma dramática o ver a un participante hacerlo, normalmente como una forma de seducción.
+* Bromas
+? Se refiere a escenas prolongadas de juegos preliminares antes de una relación sexual explícita, que pueden ser físicas y/o verbales, normalmente para excitar a la pareja hasta el punto de la frustración o la desesperación sexual.
+* Cosquillas
+? El acto de hacer cosquillas y/o ser cosquilleado en un contexto sexual de un sexrol; o, recibir estimulación sexual de los mismos.
+* Tomboys
+? Mujeres que se comportan o se presentan de manera masculina.
+* Transformación
+? El acto de hacer que las características físicas de un participante de un sexrol, posiblemente incluyéndose a uno mismo, por medios mágicos o químicos, cambien de forma dramática; puede referirse a una miríada de diferentes tipos de transformaciones, y connota recibir placer sexual del acto de transformación en sí mismo.
+* Tribadismo / Tijeras
+? Forma de sexo sin penetración en la que una persona frota su vagina contra el cuerpo de su pareja del mismo sexo para la estimulación sexual, en la mayoría de los casos el contacto vaginal a través de la tijera.
+* Ropa interior
+? Afinidad por la ropa interior, ya sea puesta por uno mismo, por su pareja o por sí misma; a menudo implica la estimulación por el olor o el tacto de la ropa interior, pero también puede referirse al uso de la ropa interior como juguete sexual de cualquier manera.
+* Compañeros no inteligentes
+? Muestra una preferencia por personajes que exhiben una inteligencia inferior a la media, a menudo lo suficientemente baja como para que sean fáciles de manipular; esto incluye todo, desde bimbos con cabeza de aire hasta grandes brutos animales.
+* Sexo vanilla
+? Sexo que no incluye elementos como el BDSM, el kink o las actividades fetichistas.
+* Voyeurismo/Exhibicionismo
+? Se refiere a la derivación de la estimulación sexual a partir de la acción de ver, normalmente en secreto, a una persona (o personas) revelarse o hacer algo explícito, o el acto de revelarse y/o hacer algo explícito con la intención de ser visto.
+
+
+# Sexo Oral
+(Dando, Recibiendo)
+* Mamada
+? Estimulación sexual mediante el contacto directo y físico de la boca o la lengua con los genitales masculinos
+* Cunnilingus
+? Estimulación sexual mediante el contacto directo y físico de la boca o la lengua con los genitales femeninos
+* Garganta profunda
+? El acto de penetrar la boca de otro personaje hasta las profundidades en las que el pene o la inserción entran en la parte posterior de la boca 
+* Follar por la cara
+? Se refiere al acto de penetrar la boca de otro personaje con una técnica similar a la de follar una vagina o un ano, típicamente apoyando la boca o el cráneo y empujando hacia adelante y hacia atrás; a menudo de forma brusca.
+* Virginidad oral
+? Participar en un sexrol en el que un personaje que nunca ha realizado una felación o un cunnilingus lleva a cabo dichos actos.
+* Penetración en la garganta
+? El acto de penetrar la boca de otro personaje hasta la profundidad en la que el pene o la inserción entra en la parte posterior de la cavidad bucal y/o la garganta, provocando a veces un reflejo nauseoso, o siendo el receptor de tales acciones.
+
+#Juego Anal
+(Dando, Recibiendo)
+* Culto al culo
+? Reconocimiento gratuito del culo o las nalgas de la pareja, ya sea verbal y/o físico, o recibir tales acciones.
+* Fisting anal
+? El acto de introducir la(s) mano(s) y/o el(los) brazo(s) en el ano de la pareja, o ser el receptor de tales actos.
+* Entrenamiento anal
+? El uso de la anatomía del ano de un personaje para preparar y/o aclimatar al personaje a una inserción, cuyo tamaño no sería cómodo para el personaje.
+* Juguetes anales
+? Se refiere a la inclusión de la penetración anal con juguetes sexuales, incluyendo pero no limitado a consoladores, vibradores, huevos anales, cuentas anales, etc.
+* Virginidad anal
+? Practicar sexo anal con un personaje que nunca ha sido penetrado analmente antes, o ser penetrado analmente mientras interpreta a un personaje que nunca ha sido penetrado antes.
+* Sexo anal/pegging
+? Ser penetrado por un compañero, con un pene o un strap-on
+* Doble penetración
+? El acto de penetrar el ano de un mismo personaje con dos objetos, incluyendo pero no limitándose al pene, juguetes sexuales, puño, etc., o recibirlos.
+* Enemas
+? La aplicación de un líquido, normalmente agua caliente o un fluido corporal, a los intestinos de un personaje, a menudo para limpiarlos, pero a veces como forma de disciplina o gratificación sexual, o recibir tales acciones; podría implicar una forma de administración distinta a la penetración fálica.
+* Rimming
+? El acto de dar estimulación oral al ano de un compañero, por medio de lamer y/o penetrar el ano del receptor con la lengua.
+* Gaping (Anal)
+? Estirar el ano durante la penetración, hasta el punto de mantenerlo abierto durante un tiempo.
+
+#Restrictivo
+(Yo, Compañero)
+* Bondage (Ligera)
+? El uso de bondage que es leve o moderado ya sea en la posición en la que hace que el personaje atado esté, la duración por la que el personaje estará en bondage, el nivel de incomodidad causado por el bondage o la cantidad de inmovilización que se producirá debido al bondage.
+* Bondage (duro)
+? El uso de ataduras que son extremas, ya sea por la posición en la que se encuentra el personaje atado, la duración de la atadura, el nivel de incomodidad causado por la atadura o la cantidad de inmovilización que se producirá debido a la atadura.
+* Castidad
+? Abstinencia sexual, ya sea voluntaria o forzada; esto puede incluir que alguien simplemente se abstenga de la actividad sexual, o el uso de un dispositivo que lo impida.
+* Collar
+? Llevar un collar alrededor del cuello
+* Encerramiento
+? Envolver todo el cuerpo como una momia en un traje de látex, un saco de dormir u otro equipo fetiche con fines de gratificación sexual.
+* Mordaza
+? El acto de colocar y alojar un objeto en la boca de otro personaje para obligarlo a respirar por la nariz, así como crear la incapacidad de hablar, o recibir tales acciones.
+* Correa
+? Ser conducido con una correa
+
+#Juguetes
+(Yo, Compañero)
+* Dildos
+? Un objeto con forma de pene erecto utilizado para la estimulación sexual.
+* Tapones
+? Un juguete sexual del tipo diseñado para ser introducido en el recto.
+* Sonido
+? El acto de insertar varillas metálicas en la uretra de un hombre o una mujer, o de recibir tales acciones; técnicamente implica varillas que resuenan y/o vibran en respuesta a una forma de estimulación, pero no necesariamente significa eso.
+* Strap-ons
+? Participar en un sexrol en el que al menos uno de los personajes use un strap-on para penetrar a otro personaje.
+* Vibradores
+Un dispositivo vibrador utilizado para la estimulación sexual.
+
+#Dominación
+(Como Dominante, Como Sumisa)
+* Dominación general / Sub general
+? Un conjunto de actividades de dominación/sumisión.
+* Servidumbre doméstica
+? Ser atendido por un mayordomo, una camarera, sirviente, una criada o un ama de llaves, o servir como tal.
+* DD/lg, MD/lb
+? Papá o Mamá Dom/ Niña o Niño Pequeño. El papá/mamá es la mitad más dominante de la relación, el pequeño es el más sumiso.
+* Disciplina
+? El uso de refuerzos (premios y/o castigos) para entrenar a una sumisa a obedecer las distintas órdenes de un amo.
+* Orgasmo forzado
+? Un orgasmo forzado es un juego sexual consensuado de BDSM o kinky en el que una persona consiente en ser forzada a tener un orgasmo de una manera que está fuera de su control.
+* Dominante / sumiso en general
+* Inmovilización
+? Participar en un juego de rol en el que al menos uno de los personajes será completamente inmovilizado físicamente por cualquier medio, a menudo con servidumbre pesada o momificación; típicamente involucrado en el juego BDSM.
+* Control del orgasmo
+? Se refiere a que el dominante controla el momento en que el sumiso alcanza el orgasmo, ya sea por medios físicos o por orden; normalmente implica la dominación y/o el exceso de burla y de borde; el orgasmo puede ser completamente negado.
+* Negación del orgasmo
+? Se refiere a que el dominante niega el orgasmo al sumiso.
+* Intercambio de poder
+? Una relación con servicio en el centro.
+* Juego de mascotas
+? El juego de mascotas es un rol en el que el enfoque es que el sumiso entre en el espacio mental alterado de una especie diferente, a menudo un perro, gato o caballo.
+* Esclavitud
+? Servir a las órdenes del dominante, o recibir ese servicio, sin elección.
+
+#Sin consentimiento
+(Agresor, Objetivo)
+* Chantaje / coacción
+? Se refiere a la inclusión de la coerción y/o el chantaje en el contexto del arco argumental de un RP, a menudo en forma de medio semiconsensual para recibir sexo de un compañero.
+* Consentimiento dudoso
+? Situaciones en las que el consentimiento de uno de los miembros de la pareja está en duda, aunque no se trata de una violación.
+* Drogas
+? El uso de drogas ilícitas en el contexto de un sexrol, normalmente para desorientar o incapacitar mentalmente a un personaje, o para elevar las sensaciones del sexo.
+* Alcohol
+? El uso de alcohol en el contexto de un sexrol, normalmente para desorientar o incapacitar mentalmente a un personaje, o para elevar las sensaciones del sexo.
+* Secuestro
+? El acto de secuestrar a un personaje en un sexrol con el propósito de abusar, a menudo sexualmente, o de ser secuestrado por tales razones; a menudo implica un encarcelamiento indefinido.
+* No consentido/violación
+? Tomar/ser tomado contra la propia voluntad, a menudo a través de la fuerza
+* Jugar a dormir
+? Participar en actos sexuales con una pareja inconsciente/dormida
+
+#Tabú
+(General)
+* Brecha de edad
+? Se refiere a las escenas en las que hay una brecha significativa en las edades de los personajes.
+* Bestialidad
+? Se refiere a un personaje sapiente que participa en un acto sexual con un animal no sapiente, o que interpreta a un animal no sapiente en un juego de rol y es contratado por un personaje sapiente.
+* Engaño
+? Cuando uno o ambos miembros de la pareja son infieles a sus seres queridos.
+* Exhibicionismo
+? Participar en un juego de rol en el que el escenario es de naturaleza pública; normalmente se utiliza junto con el exhibicionismo y/o la humillación.
+* Incesto
+? Participar en un juego de rol en el que al menos dos personajes estén relacionados.
+* Interracial
+? Escenas basadas en interacciones interraciales sin basarse en estereotipos raciales.
+* Juego de razas
+? Escenas basadas en estereotipos raciales o en el racismo, incluidas las escenas ambientadas en entornos racistas.
+* Necrofilia
+? El acto de tener sexo con un personaje muerto, o inconsciente o inanimado, que alguna vez estuvo vivo, o, teóricamente, recibir tales acciones.
+* Voyeurismo
+? Se refiere a la derivación de la estimulación sexual a partir de la acción de observar, normalmente en secreto, a una persona (o personas) revelarse o hacer algo explícito, o el acto de revelarse y/o hacer algo explícito con la intención de ser visto.
+
+
+#Surrealismo general
+(Self, Partner)
+* Crecimiento del pecho
+? Una situación en la que los pechos femeninos de al menos un personaje crecen en tamaño, típicamente a proporciones fantásticas, por cualquier medio, incluyendo pero no limitado a mágico o químico.
+* Crecimiento de la polla o de las bolas
+? Situación en la que el pene y los testículos de al menos un personaje aumentan de tamaño, normalmente hasta alcanzar proporciones fantásticas, por cualquier medio, incluyendo pero no limitándose a la infusión mágica o química, o debido a que los fluidos sexuales se bloquean o se obstruyen de alguna manera.
+* Inflación de semen (fuerte/extremo)
+? Participar en un sexrol en el que al menos uno de los personajes se llena de una cantidad imposible de semen, por lo general directamente desde el pene debido al sexo anal, vaginal u oral, haciendo que su estómago y / o cuerpo se expandan a tamaños fantásticos.
+* Inflación de semen (ligera/media)
+? Participar en un sexrol en el que al menos un personaje se llena de una cantidad masiva de semen, normalmente directamente del pene debido al sexo anal, vaginal u oral, haciendo que su estómago y/o cuerpo se abulte o se vuelva algo redondo.
+* Embarazo extremo
+? El acto de quedar embarazada con un tamaño y/o número increíble o irreal de fetos/huevos, a menudo en un período de tiempo irrealmente corto, y a menudo hasta el punto de la inmovilidad, o participar en un RP en el que al menos un personaje se ajusta a tal descripción.
+* Crecimiento forzado
+? Expresa un interés en que al menos un personaje sea forzado a soportar que alguna parte de su cuerpo crezca en contra de su voluntad, típicamente como un efecto secundario de la magia o la alteración química, o como una respuesta no deseada a ciertos estímulos.
+* Furry
+? Personajes animales antropomórficos.
+* Futanari/Futa
+? Personajes que tienen un cuerpo generalmente femenino, pero que tienen genitales tanto femeninos como masculinos (aunque los testículos no siempre están presentes).
+* Fantasma
+? Los antiguos vivos, que no poseen actualmente un cuerpo.
+* Crecimiento
+? Crecimiento del tamaño del cuerpo por medios mágicos, medicinales o fantásticos.
+* Hipercrecimiento muscular
+? Aumentar el tamaño o la fuerza de los músculos hasta grados excesivos o imposibles.
+* Inflación (Pesada/Extrema)
+? Participar en un sexrol en el que al menos un personaje se llena con una cantidad imposible de una sustancia que no sea un fluido corporal, normalmente un gas o un líquido, haciendo que su estómago y/o su cuerpo se expandan hasta tamaños fantásticos.
+* Inflación (Ligera/Media)
+? Participar en un sexrol en el que al menos un personaje está lleno de una cantidad masiva de una sustancia que no sea un fluido corporal, típicamente un gas o líquido, haciendo que su estómago y/o cuerpo se abulte o se vuelva algo redondo.
+* Macrofilia
+? Expresa un interés en personajes que son increíblemente e irrealmente altos.
+* Usuarios de la magia
+? sexroles que involucran personajes que son capaces de realizar hazañas mágicas o sobrenaturales que pueden o no ser de naturaleza sexual; típicamente se refiere a la transformación o al juego relacionado con el control mental.
+* Embarazo masculino
+? El hecho de que un personaje masculino se quede embarazado durante el transcurso de un juego de rol, o que participe en un juego de rol en el que al menos un personaje masculino esté embarazado.
+* Microfilia
+? Expresa un interés en personajes que son imposiblemente e irrealmente pequeños.
+* Monstruo o alienígena
+? Varios tipos de monstruos, extraterrestres y personajes estéticamente desafiantes.
+* Pechos múltiples
+? Expresa interés en personajes que tienen más de un par de pechos.
+* Crecimiento muscular
+? Aumentar el tamaño o la fuerza de los músculos por medios mágicos, medicinales o fantásticos.
+* Penetración de pezones
+? El acto de penetrar el pezón, a menudo en lo más profundo del pecho, con un objeto como un dedo, un juguete sexual o un pene, etc., o recibir tales acciones.
+* Oviposición
+? Participar en un sexrol en el que al menos un personaje pone huevos a través de un orificio.
+* Estallido
+? El acto de hacer estallar una parte de la anatomía de un personaje, o el personaje entero, mediante el abombamiento o la inflación, o ser el receptor de tales acciones.
+* Pollas prensiles
+? Expresa un interés por los personajes que tienen la capacidad de controlar el movimiento de sus penes.
+* Personajes de goma/gel
+? Expresa su interés en personajes compuestos de goma, látex, gel o cualquier otro material elástico.
+* Pollas sensibles
+? Participar en un sexrol en el que un jugador tiene una polla que es sensible. Puede tener la capacidad de retorcerse y enrollarse, moverse por sí misma, el orificio uretral externo puede abrirse y cerrarse a voluntad. Puede estar relacionado con el cock vore, pero no necesariamente. Algunos pueden preferir que tenga la apariencia de una serpiente.
+* Encogimiento
+? Reducción del tamaño del cuerpo, por lo general una reducción de aproximadamente un pie de tamaño, o ser el receptor de tales acciones.
+* Tentáculos
+? Participar en un sexrol en el que los tentáculos o apéndices similares a los tentáculos penetran en un personaje; a menudo implica una penetración múltiple.
+* Transformación
+? El acto de hacer que las características físicas de un participante de un juego de rol, posiblemente incluyendo a uno mismo, por medios mágicos o químicos, cambien de manera dramática; puede referirse a una miríada de diferentes tipos de transformaciones, y connota recibir placer sexual del acto de transformación en sí mismo.
+
+# Vore 
+(General)
+* Absorción
+? Vore mediante la fusión con el depredador, o siendo absorbido y/o disuelto por un fluido anatómico del depredador.
+* Vore alternativo
+? El acto de consumir físicamente a otro personaje, realizado a través de un orificio que no sea la boca, el pene, la vagina o el ano, o recibir tales acciones.
+* Vore anal
+? Vore en el que algo o alguien es tragado en el ano.
+* Vorágine de la polla
+? El acto de consumir físicamente a otro personaje, realizado a través del pene, a menudo resultando en que el personaje presa sea alojado en los testículos, o sea el receptor de tales acciones.
+* Digestión
+? Participar en un sexrol relacionado con el vore en el que el personaje presa será digerido en cualquier fluido(s) que sea aplicable.
+* Eliminación
+? Participa en un sexrol relacionado con el vore en el que la presa será consumida, digerida y liberada como materia fecal y/u orina.
+* Vore duro
+? Participar en un sexrol relacionado con el vore en el que el personaje de la presa es masticado y/o comido trozo a trozo, o bien mutilado físicamente por el acto de ser consumido.
+* Vore realista
+? Participar en una escena de vore en la que se tiene en cuenta la fisiología realista; normalmente connota el vore duro y la digestión.
+* Vore suave
+? Participar en una escena de vore en la que el personaje de la presa es consumido entero, sin causar ningún daño o un daño mínimo al personaje debido al proceso de vore.
+* Desenvolvimiento
+? El acto de consumir físicamente a otro personaje a través de la vagina y dentro del útero, o ser el receptor de tales acciones.
+* Vore irreal
+? Participar en una escena de vore en la que no se tiene en cuenta la fisiología realista; normalmente connota el vore suave.
+* Vore - Ser depredador
+? Ser la pareja consumidora en una situación de vore o unbirth, actuando como el depredador.
+* Vore - Ser presa
+? Ser la pareja consumida en una situación de RP relacionada con el vore.
+
+#Fluidos
+(General)
+* Sangre
+? Se refiere a la inclusión de sangre o a la extracción de sangre en cualquier forma en un contexto sexual, o a la realización de actos que extraigan sangre.
+* Juego con semen
+? Cualquier número de situaciones centradas en el juego con semen.
+* Pañales
+? Una situación en la que al menos un personaje llevará un pañal; normalmente implica que el pañal se ensuciará con orina y/o materia fecal, normalmente en conjunción con el juego de la edad o el infantilismo, pero a veces en conjunción con la humillación.
+* Lactancia
+? El acto de producir leche de los pechos de una persona, o mantener relaciones sexuales con un personaje que produce leche de sus pechos, normalmente en respuesta a la estimulación sexual, y cualquier juego que emane de ello.
+* Desordenado
+? Participar en un sexrol en el que la parte sexual del sexrol se desarrolla en un lugar en el que una gran cantidad de líquidos, que pueden ser fluidos corporales, estarán involucrados, tales como, pero no limitado a barro, comida, mocos o babas.
+* Saliva
+? Interés en sexrol que incluyan saliva de manera prominente. Esto puede referirse a una secreción excesiva y una gran apreciación de la misma.
+* Escupir
+? Pertenece a la inclusión de materia fecal o la expulsión de materia fecal en cualquier forma en el contexto sexual de un RP.
+* Sudor
+? El acto de sudar y/o recibir gratificación sexual por el aspecto, el sabor, el olor y/o el tacto del sudor.
+* Deportes acuáticos
+? Se refiere a la inclusión de la orina, o la expulsión de la misma, en cualquier forma, en el contexto sexual de un RP.
+
+#Degradación
+(Dando, Recibiendo)
+* Mendicidad
+? El acto de suplicar, como forma de sumisión, que se incorpora a un sexrol.
+* Golpear la polla
+? El acto de usar el pene de uno para abofetear a su pareja y/o ser abofeteado por un pene, generalmente para humillar o degradar a un trasero antes o durante una felación.
+* Desnudez forzada
+? El acto de forzar a un personaje a estar desnudo o de ser forzado a estar desnudo por otro personaje; típicamente usado en situaciones públicas.
+* Alimentación forzada
+? Participar en un sexrol en el que un personaje, normalmente atado o inmóvil, es forzado a consumir grandes cantidades de comida, a menudo imposibles e irreales, en contra de su voluntad, lo que a menudo resulta en inflación y/o aumento de peso.
+* Glory hole
+? Servir a un compañero o recibir el servicio de un compañero con una barrera física entre los participantes.
+* Humillación
+? Participar en un sexrol en el que un personaje será avergonzado, normalmente de forma extrema y/o frecuente, en un intento de obtener una respuesta de gratificación sexual de las emociones correlativas a la humillación, o simplemente como una forma de dominación psicológica o castigo; normalmente una forma más intensa de degradación.
+* Insultos
+? Participar en un sexrol en el que un personaje será insultado, en un intento de obtener una respuesta de gratificación sexual de las emociones relacionadas con la humillación, o simplemente como una forma de dominación psicológica o castigo.
+* Abuso verbal
+? El acto de acosar verbalmente o ser acosado verbalmente con términos despectivos relacionados con el sexo, o en el esfuerzo de degradar o humillar a otro personaje, u ocasionalmente para obtener una estimulación sexual del abuso.
+
+#Touch & Stimulation
+(Actor, sujeto)
+* Culto al culo
+? Reconocimiento gratuito del culo de la pareja, ya sea verbal y/o físico, o recibir tales acciones; normalmente implica estimulación oral.
+* Adoración del pene/coño
+? Reconocimiento gratuito de los genitales de la pareja, ya sea verbal y/o físico, o recibir tales acciones; normalmente implica estimulación oral.
+* Electroestimulación
+? El uso de juguetes sexuales que llevan una corriente eléctrica; a veces es doloroso.
+* Juego con los pies
+? El acto de incorporar los pies o las patas de los pies en el contexto sexual de un sexrol, incluyendo, pero sin limitarse a ello, la adoración de los pies, la recepción de gratificación sexual por la vista o el olor de los pies y/o la joroba de los pies, a veces hasta el punto del orgasmo.
+* Juego de sensaciones
+? El juego de sensaciones describe una amplia variedad de actividades, tanto vainilla como pervertidas, que utilizan los sentidos del cuerpo como una forma de excitar y proporcionar estimulación a la pareja. Aunque el juego de sensaciones suele estar relacionado con las sensaciones de la piel, no tiene por qué estar tan limitado. La vista, el gusto y el oído también pueden incluirse en los juegos de sensaciones.
+* Cosquillas
+? El acto de hacer cosquillas y/o ser cosquilleado en un contexto sexual de un sexrol; o, recibir estimulación sexual de ello.
+
+#Misc. Fetiche
+(Dando, Recibiendo)
+* Adoración de senos/pezones
+? Reconocimiento gratuito del pecho o los pezones de la pareja, ya sea verbal y/o físico, o recibir tales acciones.
+* Juego de respiración
+? Una situación en la que al menos un personaje tendrá el control físico sobre los hábitos respiratorios de otro personaje, a menudo por asfixia intermitente y/o debido a la penetración de la garganta.
+* Crianza
+? Consiste en el acto sexual con el único propósito de inducir el embarazo y/o producir descendencia.
+* Olfateo de la entrepierna
+? El acto de recibir placer al inhalar el olor de la entrepierna, o recibir tales acciones. A menudo se hace hincapié en el almizcle y/o en las propiedades relacionadas con las feromonas del olor.
+* Cornudo 
+? Se refiere al acto de un personaje que, dentro de los confines del mundo del sexrol ha sido designado para estar en una relación, tendrá una interacción sexual con un personaje distinto al que ha sido predeterminado para estar en una relación, en el contexto del RP.
+* Doble Penetración
+? El acto de penetrar a un solo personaje con dos objetos, incluyendo pero no limitándose al pene, juguetes sexuales, puño, etc., o recibirlos.
+* Apreturas extremas
+? Participar en un juego de rol en el que al menos un personaje muestra una opresión excepcional en su ano, vagina o garganta; a veces implica dolor, penetraciones excepcionalmente grandes y/o inexperiencia.
+* Feminización
+? La feminización es un tipo de juego de rol que consiste en imponer atributos tradicionalmente femeninos a un compañero masculino sumiso. También puede implicar la adopción de comportamientos y gestos tradicionalmente femeninos.
+* Fisting
+? El acto de colocar la(s) mano(s) y/o el(los) brazo(s) en la vagina, o de recibir tales acciones.
+* Juego de la comida
+? El acto de incorporar la comida en el contexto sexual de un sexrol, incluyendo pero no limitado a la alimentación forzada, el uso de crema batida o salsa de chocolate o la recepción de la gratificación sexual del acto de comer; por lo general implica increíble y / o irrealmente grandes cantidades de alimentos que se consumen.
+* Juego de pies
+? El acto de incorporar los pies o las patas de los pies en el contexto sexual de un sexrol, incluyendo pero no limitado a la adoración de los pies, recibiendo gratificación sexual de la vista o el olor de los pies y / o jorobar los pies, a veces hasta el punto de orgasmo.
+* Adoración del prepucio
+* Gangbang
+? Cuando varios compañeros, normalmente 3 o más, mantienen relaciones sexuales con un solo compañero dispuesto.
+? Reconocimiento gratuito del prepucio de la pareja, ya sea verbal y/o físico, o recepción de tales acciones; normalmente implica estimulación oral.
+* Piercings en los genitales/pezones
+? Participar en un sexrol en el que al menos un personaje tiene piercings situados en los pezones o en las zonas sexuales del cuerpo; normalmente piercings en la polla.
+* Culto a los músculos
+? Reconocimiento gratuito del físico muscular de alguien, ya sea verbal o físico.
+* Musk / Hediondo
+? Se refiere a un sexrol que involucra a personajes que son excepcionalmente almizclados; normalmente implica feromonas derivadas de la entrepierna, que puede o no carecer de higiene en algún grado.
+* Onomatopeya
+? Participar en un sexrol, o excitarse por un énfasis en las descripciones exageradas de ruidos sexuales en un juego de rol, normalmente descritos con onomatopeyas, palabras que buscan duplicar los sonidos que describen. A menudo se refiere a ruidos de fluidos como: slosh, splurt, squirt, gurgle, splortch, u otros.
+* Embarazo
+? Fetichismo de un personaje embarazado
+* Pedos vaginales
+? Los sonidos de la expulsión de aire a través del coito.
+* Agotamiento sexual
+? Participar en un sexrol en el que al menos los genitales y/u orificios de un personaje sufren dolor debido a un sexo excepcionalmente arduo o de una duración excepcional; implica continuar a pesar de ello.
+* Frustración sexual
+? Participar en un sexrol en el que al menos un personaje está excepcionalmente desesperado o cachondo y suele estar dispuesto a prescindir de las inhibiciones habituales para recibir estimulación sexual.
+* Afeitado
+? Participar en la eliminación del pelo de un participante en un juego de rol mediante el afeitado.
+* Hediondez a otro nivel
+? Personajes sin higiene o que no se preocupan por las normas típicas de limpieza debido a la pereza, la elección personal u otros motivos; pueden enfatizar y obtener placer de la pereza o de las acciones relacionadas con la falta de higiene.
+
+
+# Relacionados con el cum
+(General)
+* Bukkake
+? El acto de un grupo de al menos dos personas que eyaculan directamente sobre la cara y/o el cuerpo de un solo receptor, o que reciben tales acciones.
+* Creampie
+? El acto de eyacular dentro o sobre un orificio expuesto, a menudo abierto, o de recibir este tipo de acciones.
+* Baño de esperma
+? El acto de ser tratado físicamente con semen - típicamente en grandes cantidades - como tenerlo frotado en la piel o en el pelaje, o literalmente bañarse en él, o tener el semen de uno mismo usado de tales maneras.
+* Enemas de semen
+? El acto de realizar un enema, siendo el líquido utilizado en tal caso el semen, o recibir tales acciones, a menudo por medio de un orgasmo.
+* Corrida por la boca/nariz
+? El acto de eyacular con tal fuerza y/o volumen que el semen se escapa y/o salpica por la boca y/o la nariz del fondo, o recibir tales acciones.
+* Marcado de semen
+? El acto de eyacular sobre un sumiso o sumisa con la intención de que el olor o la vista del semen funcione como una marca de propiedad, a veces durante periodos de tiempo prolongados o permanentes, o recibir este tipo de acciones.
+* Ordeño de semen
+? El acto de recoger u ordeñar el semen de al menos una pareja masculina, normalmente mediante la estimulación manual o mecánica del pene, o utilizando el semen almacenado como juguete sexual en un RP. A menudo implica máquinas y aparatos.
+* Corrida en la ropa
+? El acto de eyacular sobre la ropa o de llevar puesta la ropa sobre la que se ha eyaculado, a menudo en público y/o durante largos periodos de tiempo.
+* Exceso de Precum
+? Participar en un sexrol en el que un personaje produce una cantidad de precum superior a la media; normalmente poco realista.
+* Semen excesivo
+? Participar en un sexrol en el que un personaje produce una cantidad de semen superior a la media; normalmente poco realista.
+* Precum muy excesivo
+? Participar en un sexrol en el que un personaje, típicamente dotado de manera irreal, produce volúmenes excepcionalmente grandes de semen, incluyendo pero no limitado a varios galones, y/o pierde semen con una fuerza y consistencia excepcionales, a menudo hasta el punto de ser comparable a orinar o más.
+* Semen muy excesivo
+? Participar en un sexrol en el que un personaje, típicamente dotado de manera irreal, produce volúmenes excepcionalmente grandes de semen, incluyendo pero no limitado a múltiples galones, y/o pierde semen con una fuerza y consistencia excepcionales, a menudo hasta el punto de ser comparable a orinar o más.
+* Eyaculación precoz
+? Expresa interés en que al menos uno de los miembros de la pareja alcance el orgasmo muy rápidamente; normalmente implica afán, sensibilidad excesiva y/o burlas prolongadas.
+* Corrida realista
+? Expresa una preferencia por participar en un sexrol en el que el volumen y la calidad del fluido sexual es realista.
+* Disparo de Precum
+? Participa en un sexrol en el que el personaje expulsa el precum con una fuerza y consistencia excepcionales.
+* Segundos de descuido
+? Participar en un sexrol en el que un personaje que acaba de correrse recibe sexo de otra pareja en el mismo orificio sin eliminar el semen del anterior.
+* Beso Blanco
+? El acto de recibir semen en la boca de uno transmitido desde la boca de otra persona, o el beso francés mientras se comparte una carga de semen entre las bocas del otro.
+* Corrida espesa y pegajosa
+? Una preferencia por el semen de los personajes que es particularmente espeso y/o viscoso, a menudo comparable al alquitrán o al pegamento.
+* Estómago abultado
+? Participar en un sexrol en el que el estómago de un personaje se abulte, ya sea debido a una inserción excepcionalmente grande (a menudo tomando la forma de tal), debido a comer una cantidad excepcionalmente grande de alimentos o como una forma localizada de la inflación de cualquier líquido o gas.
+
+
+# BDSM & Asociados
+(General)
+* Aparatos
+? El uso de objetos complejos con partes móviles con el fin de atar, inmovilizar o de otra manera gratificar sexualmente y/o incapacitar a un personaje, en el contexto sexual de un RP.
+* Suplicación
+? El acto de suplicar, como forma de sumisión, que se incorpora a un juego de rol.
+* Vendar los ojos
+? El uso de vendas u otros objetos para oscurecer la visión de al menos un personaje en un contexto sexual.
+* Marcar
+? Una situación en la que al menos un personaje será marcado, normalmente como una forma de sadomasoquismo. Típicamente mediante la aplicación de calor intenso en un patrón específico diseñado para mostrar visualmente la propiedad.
+* Enjaulado
+? El acto de colocar a otro personaje en una jaula, o ser colocado en una jaula, u otro dispositivo de confinamiento.
+* Castidad
+? Abstinencia sexual, ya sea voluntaria o forzada; esto puede incluir a alguien que simplemente se abstiene de la actividad sexual, o el uso de un dispositivo que lo impide.
+* Enrollamiento
+? El acto de enredarse, sostenerse o abrazarse en el agarre de una cola larga, las bobinas de una serpiente, serpentina u otra criatura de cuerpo largo.
+* Competencia
+? Se refiere a múltiples dominantes que compiten para administrar la dominación de la mejor manera, o múltiples sumisas que compiten para complacer a un dominante de la mejor manera.
+* Degradación
+? Una situación en la que un personaje será degradado a propósito, lo que significa que su sentido de autoestima se reducirá; normalmente en el contexto de la culpa o el BDSM.
+* Disciplina/Reforzamiento
+? El uso de refuerzos (recompensas y/o castigos) para entrenar a un sumiso a obedecer las diversas órdenes de un amo.
+* Humillación extrema
+? Participar en un sexrol en el que un personaje será humillado a propósito hasta el punto (o intento de punto) de una intensa angustia mental y la pérdida total de autoestima a través de la interacción sexual; normalmente implica un daño psicológico excepcional o devastador.
+* Bofetadas en la cara
+? Bofetadas en la cara, de cualquier grado o gravedad.
+* Azotes y palizas
+? El uso de juguetes, típicamente asociados con el BDSM y la dominación/sumisión, que se emplean contra un sumiso o un subordinado, en particular refiriéndose al juego de contacto con látigos de cualquier tipo, fustas, paletas o azotes.
+* Mordaza
+? El acto de colocar y alojar un objeto en la boca de otro personaje para obligarle a respirar por la nariz, así como crear la incapacidad de hablar, o recibir tales acciones.
+* Esposas de mano
+? El uso de esposas para inmovilizar parcialmente a un personaje durante un RP, o para sujetar a un personaje a un objeto.
+* Bondage pesado/extremo
+? El uso de ataduras que son extremas, ya sea por la posición en la que se encuentra el personaje atado, la duración de la atadura, el nivel de incomodidad causado por la atadura o la cantidad de inmovilización que se producirá debido a la atadura.
+* Humillación
+? Participar en un sexrol en el que un personaje será avergonzado, normalmente de forma extrema y/o frecuente, en un intento de obtener una respuesta de gratificación sexual de las emociones correlativas a la humillación, o simplemente como una forma de dominación psicológica o castigo; normalmente una forma más intensa de degradación.
+* Correa y collar
+? Participar en un sexrol en el que un sumiso o el fondo será adornado con un collar que se adjuntará a una correa.
+* Bondage Ligero/Medio
+? El uso de bondage que es leve o moderado, ya sea en la posición en la que se encuentra el personaje atado, la duración de la atadura, el nivel de incomodidad causado por la atadura o la cantidad de inmovilización que se producirá debido a la atadura.
+* Amo/Mascota
+? Participar en un sexrol en el que se juega una relación de dominación/sumisión entre al menos dos personajes, y en el que el personaje inferior asume el papel de mascota; típicamente un escenario basado en el entrenamiento con refuerzo positivo sobre el negativo, así como la inclusión de afecto.
+* Amo/Esclavo
+? Participar en un sexrol en el que se juega una relación de dominación/sumisión entre al menos dos personajes, y en el que el personaje inferior asume el papel de esclavo; normalmente requiere que el esclavo acepte todas las órdenes, a menudo implica formas no sexuales de abuso y utiliza el refuerzo negativo.
+* Objetivación
+? El acto de ser tratado o de tratar a otro personaje como un objeto específico y establecido, a menudo artículos de mobiliario, o de otorgar tareas deshumanizadoras a un personaje con el fin de imbuir un personaje con los rasgos de un objeto.
+* Restricciones físicas
+? El acto de dar o recibir órdenes, normalmente verbales, que limitan la forma en que otro personaje puede interactuar físicamente con otro personaje.
+* Humillación pública
+? Uno o más personajes participan en una actividad sexual explícita y explícita en un entorno público con el fin de humillar a uno o más personajes.
+* Juego con cachorros y ponis
+? Participar en un sexrol en el que se juega una relación de dominación/sumisión entre dos personajes, y en el que el personaje inferior asume el papel y la psique de un cachorro salvaje, un poni u otro animal predeterminado; normalmente implica rituales, control del uso del baño, restricciones del habla, restricciones físicas y humillación, así como un amplio entrenamiento y una mezcla de refuerzo positivo y negativo.
+* Sadismo/Masoquismo
+? El acto de adoptar el papel de un sádico o masoquista, es decir, alguien que recibe gratificación sexual por ser el receptor o por administrar dolor físico.
+* Restricciones sexuales
+? Se refiere a que el dominante da una orden sobre cómo puede actuar el sumiso en relación con los actos sexuales o dentro de una situación sexual; a menudo es un decreto de castidad o una prohibición de cualquier forma de contacto sexual.
+* Sisificación
+? El acto de cambiar la apariencia de un personaje masculino a través de medios realistas, especialmente mediante el uso de maquillaje, ropa femenina y/o accesorios femeninos, para que parezca una mujer y/o forzar al hombre a adoptar los gestos de una mujer, o ser el receptor de tales acciones.
+* Restricciones de expresión
+? El acto de dar o recibir órdenes, normalmente verbales, que limitan la forma en que otro personaje puede hablar o hacer ruido con la boca; normalmente se utiliza en un contexto BDSM para limitar al sumiso a suplicar, hacer ruidos de animales o guardar silencio.
+* Juego de Suspensión
+? Participar en un sexrol que incluye aparatos de suspensión y/o juguetes de cuerda, que normalmente suspenden a un personaje por encima de la cama o el suelo; a menudo es incómodo.
+* Sumiso Desobediente
+? Expresa su interés en participar en un sexrol en el que el sumiso y/o el personaje inferior es combativo y desobediente de cualquier manera.
+* Juego de cera
+? El acto de usar cera, normalmente cera de vela caliente, como forma de estimulación sexual y/o tortura, o de recibir tales acciones.
+
+# Watersports / Scat
+(General)
+* Control del baño
+? Una situación en la que un personaje controla cuándo, cómo y dónde otro personaje puede usar el baño de cualquier manera, normalmente como una forma de control o degradación.
+* Pañales
+? Una situación en la que al menos un personaje llevará un pañal; normalmente implica que el pañal se ensuciará con orina y/o materia fecal, normalmente en conjunción con el juego de la edad o el infantilismo, pero a veces en conjunción con la humillación.
+* Pedos
+? Pedos, durante la relación sexual, o simplemente como un acto durante el juego de rol. Pueden ser exagerados (expulsiones visibles de aire) y/o con ruidos flatulentos exagerados.
+* Hiper Scat
+? Producir cantidades antinaturales de heces, o utilizar otros medios para obtener heces en cantidades enormes, a menudo irreales, dentro de un RP, la excreción del producto de las mismas causando estimulación sexual y/o angustia a uno o más personajes.
+* Híper deportes acuáticos
+? Producir cantidades antinaturales de orina, o utilizar otros medios para obtener orina en cantidades enormes, a menudo irreales, dentro de un RP, la excreción del producto de la misma causando estimulación sexual y/o angustia a uno o más personajes.
+* Marcado
+? El acto de orinar sobre otro personaje para marcarlo con su propio olor a orina, o ser el receptor de tales acciones.
+* Enemas de orina
+? El acto de realizar un enema, siendo el líquido utilizado en el mismo la orina, o de recibir tales acciones, a menudo por medio de alguien que orina dentro de su pareja.
+* Scat
+? Se refiere a la inclusión de materia fecal o a la expulsión de materia fecal de cualquier forma en el contexto sexual de un RP.
+* Tortura de Scat
+? El acto de usar materia fecal o el acto de expulsar materia fecal para abusar de otro personaje que no quiere o no está interesado en participar en tales acciones, o ser el receptor de las mismas.
+* Ensuciar
+? El acto de "ensuciar con materia fecal" la ropa interior, los pantalones o la ropa, o hacer que otro personaje realice tales acciones.
+* Tragar heces
+? Participar en un sexrol en el que un personaje consuma oralmente materia fecal.
+* Tragar orina
+? Participar en un sexrol en el que un personaje consuma orina por vía oral.
+* Tragar vómito
+? Participar en un sexrol en el que un personaje consuma vómito por vía oral.
+* Vómito
+? El acto de vomitar, ser vomitado, consumir vómito o incluir el vómito en el contexto sexual de un juego de rol; normalmente en un contexto BDSM.
+* Deportes acuáticos
+? Se refiere a la inclusión de orina, o la expulsión de orina, en cualquier forma, en el contexto sexual de un sexrol.
+* Mojar
+? El acto de orinar en la ropa interior, los pantalones o la ropa, o hacer que otro personaje orine sobre una persona que está vestida en cualquier grado.
+
+
+#Dolor
+(Dano, Recibiendo)
+* Dolor leve
+? Se refiere a la inclusión de un dolor físico ligero debido a actos directamente sexuales.
+* Dolor fuerte
+? Se refiere a la inclusión de dolor físico intenso debido a actos que son directamente sexuales; normalmente penetraciones bruscas o excesivas. Esto probablemente dejará una marca.
+* Pinzas para los pezones
+? Dispositivo de presión aplicado a los pezones para crear dolor que produce placer.
+* Pinzas para la ropa
+? Pellizcos entre las horquillas de un alfiler de ropa
+* Azotamiento
+? El caning es una técnica utilizada en el BDSM en la que el dominante golpea repetidamente al sumiso con un bastón largo y flexible, normalmente en las nalgas.
+* Flogging
+? El uso de juguetes, típicamente asociados con el BDSM y la dominación/sumisión, que se emplean contra un sumiso o un subordinado, en particular refiriéndose al juego de contacto que implica látigos de cualquier tipo, fustas, palas o azotes.
+* Amordazamiento / Asfixia
+? Hacer que se amordace o ahogue, ya sea con objetos introducidos en la boca o con manos/objetos alrededor del cuello.
+* Golpear
+? Ser golpeado con los puños u otros objetos
+* Azotar
+? El acto de golpear las nalgas de otro personaje, o ser el receptor de ello; a menudo como una forma de juego erótico previo o como castigo en un entorno BDSM.
+* Golpear la polla/el coño
+? Golpear los genitales de tu pareja, o recibir dichas bofetadas
+* Tortura de polla/coño
+? Participar en un juego de rol en el que se preste atención negativa a los genitales de al menos un personaje, con la intención de causar dolor físico.
+* Cera caliente
+? El acto de usar cera, típicamente cera de vela caliente, como una forma de estimulación sexual y/o tortura, o recibir tales acciones.
+* Rascarse
+? Un personaje araña a otro con sus uñas o garras, a veces dejando marcas; a veces, pero no necesariamente dolorosas.
+* Morder
+? El acto de morder o ser mordido; a veces doloroso, a veces juguetón.
+* Cortar 
+? El acto de cortar a un compañero para causarle dolor en un contexto sexual.
+* Tabaco
+? Asesinar a un personaje como parte del sexo.
+* Ballbusting
+? Dañar los testículos, normalmente por placer sexual.
+* Penetración 3+
+? El acto de penetrar a un solo personaje con tres o más objetos, incluyendo pero no limitado al pene, juguetes sexuales, puño, etc., o recibir tales acciones.
+* Prolapso anal
+? Cuando el interior del ano es sacado por la fuerza (medios no naturales, como un método de crema, líquido o succión o masaje interno) o naturalmente (ya sea por una polla, un consolador o empujando)
+* Asfixia mamaria
+? El acto de asfixiar a un personaje usando sus pechos, dificultando su respiración.
+* Control de la respiración
+? Una situación en la que al menos un personaje tendrá el control físico sobre los hábitos respiratorios de otro personaje, a menudo por asfixia intermitente y/o debido a la penetración de la garganta.
+* Asfixia
+? Una situación en la que un personaje controlará la respiración de otro con fuerza extrema, y típicamente por períodos de tiempo prolongados y/o peligrosos.
+* Asfixia de polla/bolas
+? El acto de asfixiar a un personaje con una polla y/o bolas, dificultando su respiración.
+* Follar pollas
+? El acto de insertar el pene de uno en otro pene y empujar en él como si fuera un orificio más tradicional.
+* Tirar del pelo
+? El acto de tirar del pelo de otro personaje, o ser el destinatario de ello.
+
+
+# Blood & Gore / Tortura / Muerte
+(General)
+* Abrasiones
+? Participar en una situación en la que al menos un personaje reciba abrasiones, definidas como raspones que en su menor gravedad son capaces de provocar hemorragias; normalmente se administran mediante objetos ásperos o gruesos, como papel de lija o cemento.
+* Juego de sangre
+? Se refiere a la inclusión de sangre o a la extracción de sangre de cualquier forma en un contexto sexual, o a la realización de actos que extraigan sangre.
+* Tortura de pechos y pezones
+? Una situación en la que al menos los pechos o los pezones de un personaje serán objeto de dolor físico, no sexual, de larga duración.
+* Quemado
+? Una situación en la que al menos un personaje será quemado.
+* Castración
+? Acción en la que se extirpan o inutilizan los testículos, ya sea por medios quirúrgicos, químicos o mágicos; a veces también se refiere a la extirpación o inutilización de los ovarios en quienes los tienen.
+* Muerte
+? Una situación en la que un personaje morirá en cualquier momento por cualquier medio.
+* Emasculación
+? Acto por el que se eliminan los genitales por medios mágicos o quirúrgicos, normalmente el pene y/o los testículos. También puede implicar humillación; por ejemplo, hacer que un varón sea menos hombre.
+* Tortura genital
+? Participar en un sexrol en el que al menos los genitales de un personaje reciben una atención negativa, con la intención de causar dolor físico.
+* Empalamiento
+? Participar en el acto de ser penetrado por un objeto de un orificio y hacer que se extienda fuera de otro orificio de una manera típicamente no mortal.
+* Menstruación
+? Participar en un sexrol en el que la menstruación femenina se aplica al contexto sexual de una escena.
+* Mutilación
+? El acto de dañar físicamente o causar un cambio y/o daño irreparable a un personaje en un juego de rol, normalmente mediante el uso de cortes, puñaladas u objetos de contacto; a menudo es excepcionalmente doloroso.
+* Necrofilia
+? El acto de tener sexo con un personaje muerto, o inconsciente o inanimado, que alguna vez estuvo vivo, o, teóricamente, recibir tales acciones.
+* Dolor no sexual
+? Se refiere a la administración y/o recepción de dolor que no se deriva de la actividad sexual y no causa gratificación sexual para el receptor, a menudo interpretado como dolor que se localiza en partes no sexuales del cuerpo.
+* Tortura no sexual
+? El acto de causar o recibir escenas prolongadas de dolor debido a actos que no son de naturaleza sexual, o dar o ser el receptor de abuso psicológico durante largos períodos de tiempo o en un gran grado de intensidad.
+* Nulidad
+? La extirpación de cualquier parte del cuerpo.
+* Perforación
+? El acto de perforar el cuerpo de un personaje, normalmente de forma dolorosa, y a menudo en un lugar sexual o excepcionalmente sensible del cuerpo de la persona, o tener el propio cuerpo perforado.
+* Tortura sexual
+? Tortura que es de naturaleza sexual, o que daña mucho a la persona sexualmente.
+* Tragar sangre
+? El acto de consumir sangre oralmente.
+
+#Sexrol
+(Yo, Compañero)
+* Primera persona
+* Tercera persona
+* Longitud del mensaje corto (~1-3 frases)
+* Longitud media del mensaje (~3-7 frases)
+* Longitud del mensaje largo (~2-4 párrafos)
+* Historia (3+ párrafos)
+* Longitud dinámica de los mensajes
+
+#Medio
+(General)
+* Skype
+* Kik
+* Reddit
+* Correo electrónico
+* Discord
+* Otros
+
+#Escala de tiempo
+(Yo, compañero)
+* Escenas a corto plazo
+* Escenas a medio plazo
+* Escenas a largo plazo
+* Respuestas rápidas (0~10 minutos)
+* Respuestas rápidas (10~30 minutos)
+* Respuestas normales (30 minutos ~ 2 horas)
+* Respuestas lentas (2~8 horas)
+* Respuestas glaciales (8-24 horas)
+* Respuestas ocasionales (más de 24 horas)
+
+
+
+
+            </textarea
+      >
+      <button id="KinksOK">Accept</button>
+    </div>
+    <div id="InputOverlay" class="overlay">
+      <div class="widthWrapper">
+        <div id="InputPrevious"></div>
+        <div id="InputCurrent">
+          <h2 id="InputCategory"></h2>
+          <h3 id="InputField"></h3>
+          <button class="closePopup">&times;</button>
+          <div id="InputValues"></div>
+        </div>
+        <div id="InputNext"></div>
+      </div>
+    </div>
+    <script>
+      var log = function(val, base) {
+        return Math.log(val) / Math.log(base);
+      };
+      var strToClass = function(str) {
+        var className = "";
+        str = str.toLowerCase();
+        var validChars = "abcdefghijklmnopqrstuvwxyz";
+        var newWord = false;
+        for (var i = 0; i < str.length; i++) {
+          var chr = str[i];
+          if (validChars.indexOf(chr) >= 0) {
+            if (newWord) chr = chr.toUpperCase();
+            className += chr;
+            newWord = false;
+          } else {
+            newWord = true;
+          }
+        }
+        return className;
+      };
+      var addCssRule = function(selector, rules) {
+        var sheet = document.styleSheets[0];
+        if ("insertRule" in sheet) {
+          sheet.insertRule(selector + "{" + rules + "}", 0);
+        } else if ("addRule" in sheet) {
+          sheet.addRule(selector, rules, 0);
+        }
+      };
+
+      var kinks = {};
+      var inputKinks = {};
+      var colors = {};
+      var level = {};
+
+      $(function() {
+        var imgurClientId = "9db53e5936cd02f";
+
+        inputKinks = {
+          $columns: [],
+          createCategory: function(name, fields) {
+            var $category = $('<div class="kinkCategory">')
+              .addClass("cat-" + strToClass(name))
+              .data("category", name)
+              .append($("<h2>").text(name));
+
+            var $table = $('<table class="kinkGroup">').data("fields", fields);
+            var $thead = $("<thead>").appendTo($table);
+            for (var i = 0; i < fields.length; i++) {
+              $("<th>")
+                .addClass("choicesCol")
+                .text(fields[i])
+                .appendTo($thead);
+            }
+            $("<th>").appendTo($thead);
+            $("<tbody>").appendTo($table);
+            $category.append($table);
+
+            return $category;
+          },
+          createChoice: function() {
+            var $container = $("<div>").addClass("choices");
+            var levels = Object.keys(level);
+            for (var i = 0; i < levels.length; i++) {
+              $("<button>")
+                .addClass("choice")
+                .addClass(level[levels[i]])
+                .data("level", levels[i])
+                .data("levelInt", i)
+                .attr("title", levels[i])
+                .appendTo($container)
+                .on("click", function() {
+                  $container.find("button").removeClass("selected");
+                  $(this).addClass("selected");
+                });
+            }
+            return $container;
+          },
+          createKink: function(fields, name) {
+            var $row = $("<tr>")
+              .data("kink", name)
+              .addClass("kinkRow");
+            for (var i = 0; i < fields.length; i++) {
+              var $choices = inputKinks.createChoice();
+              $choices.data("field", fields[i]);
+              $choices.addClass("choice-" + strToClass(fields[i]));
+              $("<td>")
+                .append($choices)
+                .appendTo($row);
+            }
+            $("<td>")
+              .text(name)
+              .appendTo($row);
+            $row.addClass("kink-" + strToClass(name));
+            return $row;
+          },
+          createColumns: function() {
+            var colClasses = ["100", "50", "33", "25"];
+
+            var numCols = Math.floor((document.body.scrollWidth - 20) / 400);
+            if (!numCols) numCols = 1;
+            if (numCols > 4) numCols = 4;
+            var colClass = "col" + colClasses[numCols - 1];
+
+            inputKinks.$columns = [];
+            for (var i = 0; i < numCols; i++) {
+              inputKinks.$columns.push(
+                $("<div>")
+                  .addClass("col " + colClass)
+                  .appendTo($("#InputList"))
+              );
+            }
+          },
+          placeCategories: function($categories) {
+            var $body = $("body");
+            var totalHeight = 0;
+            for (var i = 0; i < $categories.length; i++) {
+              var $clone = $categories[i].clone().appendTo($body);
+              var height = $clone.height();
+              totalHeight += height;
+              $clone.remove();
+            }
+
+            var colHeight = totalHeight / inputKinks.$columns.length;
+            var colIndex = 0;
+            for (var i = 0; i < $categories.length; i++) {
+              var curHeight = inputKinks.$columns[colIndex].height();
+              var catHeight = $categories[i].height();
+              if (curHeight + catHeight / 2 > colHeight) colIndex++;
+              while (colIndex >= inputKinks.$columns.length) {
+                colIndex--;
+              }
+              inputKinks.$columns[colIndex].append($categories[i]);
+            }
+          },
+          fillInputList: function() {
+            $("#InputList").empty();
+            inputKinks.createColumns();
+
+            var $categories = [];
+            var kinkCats = Object.keys(kinks);
+            for (var i = 0; i < kinkCats.length; i++) {
+              var catName = kinkCats[i];
+              var category = kinks[catName];
+              var fields = category.fields;
+              var kinkArr = category.kinks;
+
+              var $category = inputKinks.createCategory(catName, fields);
+              var $tbody = $category.find("tbody");
+              for (var k = 0; k < kinkArr.length; k++) {
+                $tbody.append(inputKinks.createKink(fields, kinkArr[k]));
+              }
+
+              $categories.push($category);
+            }
+            inputKinks.placeCategories($categories);
+
+            // Make things update hash
+            $("#InputList")
+              .find("button.choice")
+              .on("click", function() {
+                location.hash = inputKinks.updateHash();
+              });
+          },
+          init: function() {
+            // Set up DOM
+            inputKinks.fillInputList();
+
+            // Read hash
+            inputKinks.parseHash();
+
+            // Make export button work
+            $("#Export").on("click", inputKinks.export);
+            $("#URL").on("click", function() {
+              this.select();
+            });
+
+            // On resize, redo columns
+            (function() {
+              var lastResize = 0;
+              $(window).on("resize", function() {
+                var curTime = new Date().getTime();
+                lastResize = curTime;
+                setTimeout(function() {
+                  if (lastResize === curTime) {
+                    inputKinks.fillInputList();
+                    inputKinks.parseHash();
+                  }
+                }, 500);
+              });
+            })();
+          },
+          hashChars:
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.=+*^!@",
+          maxPow: function(base, maxVal) {
+            var maxPow = 1;
+            for (var pow = 1; Math.pow(base, pow) <= maxVal; pow++) {
+              maxPow = pow;
+            }
+            return maxPow;
+          },
+          prefix: function(input, len, char) {
+            while (input.length < len) {
+              input = char + input;
+            }
+            return input;
+          },
+          drawLegend: function(context) {
+            context.font = "bold 13px Arial";
+            context.fillStyle = "#000000";
+
+            var levels = Object.keys(colors);
+            var x = context.canvas.width - 15 - 120 * levels.length;
+            for (var i = 0; i < levels.length; i++) {
+              context.beginPath();
+              context.arc(x + 120 * i, 17, 8, 0, 2 * Math.PI, false);
+              context.fillStyle = colors[levels[i]];
+              context.fill();
+              context.strokeStyle = "rgba(0, 0, 0, 0.5)";
+              context.lineWidth = 1;
+              context.stroke();
+
+              context.fillStyle = "#000000";
+              context.fillText(levels[i], x + 15 + i * 120, 22);
+            }
+          },
+          setupCanvas: function(width, height, username) {
+            $("canvas").remove();
+            var canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+
+            var $canvas = $(canvas);
+            $canvas.css({
+              width: width,
+              height: height
+            });
+            // $canvas.insertBefore($('#InputList'));
+
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#FFFFFF";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.font = "bold 24px Arial";
+            context.fillStyle = "#000000";
+            context.fillText("Kinklist " + username, 5, 25);
+
+            inputKinks.drawLegend(context);
+            return { context: context, canvas: canvas };
+          },
+          drawCallHandlers: {
+            simpleTitle: function(context, drawCall) {
+              context.fillStyle = "#000000";
+              context.font = "bold 18px Arial";
+              context.fillText(drawCall.data, drawCall.x, drawCall.y + 5);
+            },
+            titleSubtitle: function(context, drawCall) {
+              context.fillStyle = "#000000";
+              context.font = "bold 18px Arial";
+              context.fillText(
+                drawCall.data.category,
+                drawCall.x,
+                drawCall.y + 5
+              );
+
+              var fieldsStr = drawCall.data.fields.join(", ");
+              context.font = "italic 12px Arial";
+              context.fillText(fieldsStr, drawCall.x, drawCall.y + 20);
+            },
+            kinkRow: function(context, drawCall) {
+              context.fillStyle = "#000000";
+              context.font = "12px Arial";
+
+              var x = drawCall.x + 5 + drawCall.data.choices.length * 20;
+              var y = drawCall.y - 6;
+              context.fillText(drawCall.data.text, x, y);
+
+              // Circles
+              for (var i = 0; i < drawCall.data.choices.length; i++) {
+                var choice = drawCall.data.choices[i];
+                var color = colors[choice];
+
+                var x = 10 + drawCall.x + i * 20;
+                var y = drawCall.y - 10;
+
+                context.beginPath();
+                context.arc(x, y, 8, 0, 2 * Math.PI, false);
+                context.fillStyle = color;
+                context.fill();
+                context.strokeStyle = "rgba(0, 0, 0, 0.5)";
+                context.lineWidth = 1;
+                context.stroke();
+              }
+            }
+          },
+          export: function() {
+            var username = prompt("Please enter your name");
+            if (typeof username !== "string") return;
+            else if (username.length) username = "(" + username + ")";
+
+            $("#Loading").fadeIn();
+            $("#URL").fadeOut();
+
+            // Constants
+            var numCols = 6;
+            var columnWidth = 250;
+            var simpleTitleHeight = 35;
+            var titleSubtitleHeight = 50;
+            var rowHeight = 25;
+            var offsets = {
+              left: 10,
+              right: 10,
+              top: 50,
+              bottom: 10
+            };
+
+            // Find out how many we have of everything
+            var numCats = $(".kinkCategory").length;
+            var dualCats = $(".kinkCategory th + th + th").length;
+            var simpleCats = numCats - dualCats;
+            var numKinks = $(".kinkRow").length;
+
+            // Determine the height required for all categories and kinks
+            var totalHeight =
+              numKinks * rowHeight +
+              dualCats * titleSubtitleHeight +
+              simpleCats * simpleTitleHeight;
+
+            // Initialize columns and drawStacks
+            var columns = [];
+            for (var i = 0; i < numCols; i++) {
+              columns.push({ height: 0, drawStack: [] });
+            }
+
+            // Create drawcalls and place them in the drawStack
+            // for the appropriate column
+            var avgColHeight = totalHeight / numCols;
+            var columnIndex = 0;
+            $(".kinkCategory").each(function() {
+              var $cat = $(this);
+              var catName = $cat.data("category");
+              var category = kinks[catName];
+              var fields = category.fields;
+              var catKinks = category.kinks;
+
+              var catHeight = 0;
+              catHeight +=
+                fields.length === 1 ? simpleTitleHeight : titleSubtitleHeight;
+              catHeight += catKinks.length * rowHeight;
+
+              // Determine which column to place this category in
+              if (columns[columnIndex].height + catHeight / 2 > avgColHeight)
+                columnIndex++;
+              while (columnIndex >= numCols) columnIndex--;
+              var column = columns[columnIndex];
+
+              // Drawcall for title
+              var drawCall = { y: column.height };
+              column.drawStack.push(drawCall);
+              if (fields.length < 2) {
+                column.height += simpleTitleHeight;
+                drawCall.type = "simpleTitle";
+                drawCall.data = catName;
+              } else {
+                column.height += titleSubtitleHeight;
+                drawCall.type = "titleSubtitle";
+                drawCall.data = {
+                  category: catName,
+                  fields: fields
+                };
+              }
+
+              // Drawcalls for kinks
+              $cat.find(".kinkRow").each(function() {
+                var $kinkRow = $(this);
+                var drawCall = {
+                  y: column.height,
+                  type: "kinkRow",
+                  data: {
+                    choices: [],
+                    text: $kinkRow.data("kink")
+                  }
+                };
+                column.drawStack.push(drawCall);
+                column.height += rowHeight;
+
+                // Add choices
+                $kinkRow.find(".choices").each(function() {
+                  var $selection = $(this).find(".choice.selected");
+                  var selection =
+                    $selection.length > 0
+                      ? $selection.data("level")
+                      : Object.keys(level)[0];
+
+                  drawCall.data.choices.push(selection);
+                });
+              });
+            });
+
+            var tallestColumnHeight = 0;
+            for (var i = 0; i < columns.length; i++) {
+              if (tallestColumnHeight < columns[i].height) {
+                tallestColumnHeight = columns[i].height;
+              }
+            }
+
+            var canvasWidth =
+              offsets.left + offsets.right + columnWidth * numCols;
+            var canvasHeight =
+              offsets.top + offsets.bottom + tallestColumnHeight;
+            var setup = inputKinks.setupCanvas(
+              canvasWidth,
+              canvasHeight,
+              username
+            );
+            var context = setup.context;
+            var canvas = setup.canvas;
+
+            for (var i = 0; i < columns.length; i++) {
+              var column = columns[i];
+              var drawStack = column.drawStack;
+
+              var drawX = offsets.left + columnWidth * i;
+              for (var j = 0; j < drawStack.length; j++) {
+                var drawCall = drawStack[j];
+                drawCall.x = drawX;
+                drawCall.y += offsets.top;
+                inputKinks.drawCallHandlers[drawCall.type](context, drawCall);
+              }
+            }
+
+            //return $(canvas).insertBefore($('#InputList'));
+
+            // Send canvas to imgur
+            $.ajax({
+              url: "https://api.imgur.com/3/image",
+              type: "POST",
+              headers: {
+                // Your application gets an imgurClientId from Imgur
+                Authorization: "Client-ID " + imgurClientId,
+                Accept: "application/json"
+              },
+              data: {
+                // convert the image data to base64
+                image: canvas.toDataURL().split(",")[1],
+                type: "base64"
+              },
+              success: function(result) {
+                $("#Loading").hide();
+                var url = "https://i.imgur.com/" + result.data.id + ".png";
+                $("#URL")
+                  .val(url)
+                  .fadeIn();
+              },
+              fail: function() {
+                $("#Loading").hide();
+                alert("Failed to upload to imgur, could not connect");
+              }
+            });
+          },
+          encode: function(base, input) {
+            var hashBase = inputKinks.hashChars.length;
+            var outputPow = inputKinks.maxPow(
+              hashBase,
+              Number.MAX_SAFE_INTEGER
+            );
+            var inputPow = inputKinks.maxPow(
+              base,
+              Math.pow(hashBase, outputPow)
+            );
+
+            var output = "";
+            var numChunks = Math.ceil(input.length / inputPow);
+            var inputIndex = 0;
+            for (var chunkId = 0; chunkId < numChunks; chunkId++) {
+              var inputIntValue = 0;
+              for (var pow = 0; pow < inputPow; pow++) {
+                var inputVal = input[inputIndex++];
+                if (typeof inputVal === "undefined") break;
+                var val = inputVal * Math.pow(base, pow);
+                inputIntValue += val;
+              }
+
+              var outputCharValue = "";
+              while (inputIntValue > 0) {
+                var maxPow = Math.floor(log(inputIntValue, hashBase));
+                var powVal = Math.pow(hashBase, maxPow);
+                var charInt = Math.floor(inputIntValue / powVal);
+                var subtract = charInt * powVal;
+                var char = inputKinks.hashChars[charInt];
+                outputCharValue += char;
+                inputIntValue -= subtract;
+              }
+              var chunk = inputKinks.prefix(
+                outputCharValue,
+                outputPow,
+                inputKinks.hashChars[0]
+              );
+              output += chunk;
+            }
+            return output;
+          },
+          decode: function(base, output) {
+            var hashBase = inputKinks.hashChars.length;
+            var outputPow = inputKinks.maxPow(
+              hashBase,
+              Number.MAX_SAFE_INTEGER
+            );
+
+            var values = [];
+            var numChunks = Math.max(output.length / outputPow);
+            for (var i = 0; i < numChunks; i++) {
+              var chunk = output.substring(i * outputPow, (i + 1) * outputPow);
+              var chunkValues = inputKinks.decodeChunk(base, chunk);
+              for (var j = 0; j < chunkValues.length; j++) {
+                values.push(chunkValues[j]);
+              }
+            }
+            return values;
+          },
+          decodeChunk: function(base, chunk) {
+            var hashBase = inputKinks.hashChars.length;
+            var outputPow = inputKinks.maxPow(
+              hashBase,
+              Number.MAX_SAFE_INTEGER
+            );
+            var inputPow = inputKinks.maxPow(
+              base,
+              Math.pow(hashBase, outputPow)
+            );
+
+            var chunkInt = 0;
+            for (var i = 0; i < chunk.length; i++) {
+              var char = chunk[i];
+              var charInt = inputKinks.hashChars.indexOf(char);
+              var pow = chunk.length - 1 - i;
+              var intVal = Math.pow(hashBase, pow) * charInt;
+              chunkInt += intVal;
+            }
+            var chunkIntCopy = chunkInt;
+
+            var output = [];
+            for (var pow = inputPow - 1; pow >= 0; pow--) {
+              var posBase = Math.floor(Math.pow(base, pow));
+              var posVal = Math.floor(chunkInt / posBase);
+              var subtract = posBase * posVal;
+              output.push(posVal);
+              chunkInt -= subtract;
+            }
+            output.reverse();
+            return output;
+          },
+          updateHash: function() {
+            var hashValues = [];
+            $("#InputList .choices").each(function() {
+              var $this = $(this);
+              var lvlInt = $this.find(".selected").data("levelInt");
+              if (!lvlInt) lvlInt = 0;
+              hashValues.push(lvlInt);
+            });
+            return inputKinks.encode(Object.keys(colors).length, hashValues);
+          },
+          parseHash: function() {
+            var hash = location.hash.substring(1);
+            if (hash.length < 10) return;
+
+            var values = inputKinks.decode(Object.keys(colors).length, hash);
+            var valueIndex = 0;
+            $("#InputList .choices").each(function() {
+              var $this = $(this);
+              var value = values[valueIndex++];
+              $this
+                .children()
+                .eq(value)
+                .addClass("selected");
+            });
+          },
+          saveSelection: function() {
+            var selection = [];
+            $(".choice.selected").each(function() {
+              // .choice selector
+              var selector = "." + this.className.replace(/ /g, ".");
+              // .choices selector
+              selector =
+                "." +
+                $(this)
+                  .closest(".choices")[0]
+                  .className.replace(/ /g, ".") +
+                " " +
+                selector;
+              // .kinkRow selector
+              selector =
+                "." +
+                $(this)
+                  .closest("tr.kinkRow")[0]
+                  .className.replace(/ /g, ".") +
+                " " +
+                selector;
+              // .kinkCategory selector
+              selector =
+                "." +
+                $(this)
+                  .closest(".kinkCategory")[0]
+                  .className.replace(/ /g, ".") +
+                " " +
+                selector;
+              selector = selector.replace(".selected", "");
+              selection.push(selector);
+            });
+            return selection;
+          },
+          inputListToText: function() {
+            var KinksText = "";
+            var kinkCats = Object.keys(kinks);
+            for (var i = 0; i < kinkCats.length; i++) {
+              var catName = kinkCats[i];
+              var catFields = kinks[catName].fields;
+              var catKinks = kinks[catName].kinks;
+              KinksText += "#" + catName + "\r\n";
+              KinksText += "(" + catFields.join(", ") + ")\r\n";
+              for (var j = 0; j < catKinks.length; j++) {
+                KinksText += "* " + catKinks[j] + "\r\n";
+              }
+              KinksText += "\r\n";
+            }
+            return KinksText;
+          },
+          restoreSavedSelection: function(selection) {
+            setTimeout(function() {
+              for (var i = 0; i < selection.length; i++) {
+                var selector = selection[i];
+                $(selector).addClass("selected");
+              }
+              location.hash = inputKinks.updateHash();
+            }, 300);
+          },
+          parseKinksText: function(kinksText) {
+            var newKinks = {};
+            var lines = kinksText.replace(/\r/g, "").split("\n");
+
+            var cat = null;
+            var catName = null;
+            for (var i = 0; i < lines.length; i++) {
+              var line = lines[i];
+              if (!line.length) continue;
+
+              if (line[0] === "#") {
+                if (catName) {
+                  if (!(cat.fields instanceof Array) || cat.fields.length < 1) {
+                    alert(catName + " does not have any fields defined!");
+                    return;
+                  }
+                  if (!(cat.kinks instanceof Array) || cat.kinks.length < 1) {
+                    alert(catName + " does not have any kinks listed!");
+                    return;
+                  }
+                  newKinks[catName] = cat;
+                }
+                catName = line.substring(1).trim();
+                cat = { kinks: [] };
+              }
+              if (!catName) continue;
+              if (line[0] === "(") {
+                cat.fields = line
+                  .substring(1, line.length - 1)
+                  .trim()
+                  .split(",");
+                for (var j = 0; j < cat.fields.length; j++) {
+                  cat.fields[j] = cat.fields[j].trim();
+                }
+              }
+              if (line[0] === "*") {
+                var kink = line.substring(1).trim();
+                cat.kinks.push(kink);
+              }
+            }
+            if (catName && !newKinks[catName]) {
+              if (!(cat.fields instanceof Array) || cat.fields.length < 1) {
+                alert(catName + " does not have any fields defined!");
+                return;
+              }
+              if (!(cat.kinks instanceof Array) || cat.kinks.length < 1) {
+                alert(catName + " does not have any kinks listed!");
+                return;
+              }
+              newKinks[catName] = cat;
+            }
+            return newKinks;
+          }
+        };
+
+        $("#Edit").on("click", function() {
+          var KinksText = inputKinks.inputListToText();
+          $("#Kinks").val(KinksText.trim());
+          $("#EditOverlay").fadeIn();
+        });
+        $("#EditOverlay").on("click", function() {
+          $(this).fadeOut();
+        });
+        $("#KinksOK").on("click", function() {
+          var selection = inputKinks.saveSelection();
+          try {
+            var kinksText = $("#Kinks").val();
+            kinks = inputKinks.parseKinksText(kinksText);
+            inputKinks.fillInputList();
+          } catch (e) {
+            alert(
+              "An error occured trying to parse the text entered, please correct it and try again"
+            );
+            return;
+          }
+          inputKinks.restoreSavedSelection(selection);
+          $("#EditOverlay").fadeOut();
+        });
+        $(".overlay > *").on("click", function(e) {
+          e.stopPropagation();
+        });
+
+        var stylesheet = document.styleSheets[0];
+        $(".legend .choice").each(function() {
+          var $choice = $(this);
+          var $parent = $choice.parent();
+          var text = $parent.text().trim();
+          var color = $choice.data("color");
+          var cssClass = this.className.replace("choice ", "").trim();
+
+          addCssRule(".choice." + cssClass, "background-color: " + color + ";");
+          colors[text] = color;
+          level[text] = cssClass;
+        });
+
+        kinks = inputKinks.parseKinksText(
+          $("#Kinks")
+            .text()
+            .trim()
+        );
+        inputKinks.init();
+
+        (function() {
+          var $popup = $("#InputOverlay");
+          var $previous = $("#InputPrevious");
+          var $next = $("#InputNext");
+
+          // current
+          var $category = $("#InputCategory");
+          var $field = $("#InputField");
+          var $options = $("#InputValues");
+
+          function getChoiceValue($choices) {
+            var $selected = $choices.find(".choice.selected");
+            return $selected.data("level");
+          }
+
+          function getChoicesElement(category, kink, field) {
+            var selector = ".cat-" + strToClass(category);
+            selector += " .kink-" + strToClass(kink);
+            selector += " .choice-" + strToClass(field);
+
+            var $choices = $(selector);
+            return $choices;
+          }
+
+          inputKinks.getAllKinks = function() {
+            var list = [];
+
+            var categories = Object.keys(kinks);
+            for (var i = 0; i < categories.length; i++) {
+              var category = categories[i];
+              var fields = kinks[category].fields;
+              var kinkArr = kinks[category].kinks;
+
+              for (var j = 0; j < fields.length; j++) {
+                var field = fields[j];
+                for (var k = 0; k < kinkArr.length; k++) {
+                  var kink = kinkArr[k];
+                  var $choices = getChoicesElement(category, kink, field);
+                  var value = getChoiceValue($choices);
+                  var obj = {
+                    category: category,
+                    kink: kink,
+                    field: field,
+                    value: value,
+                    $choices: $choices,
+                    showField: fields.length >= 2
+                  };
+                  list.push(obj);
+                }
+              }
+            }
+            return list;
+          };
+
+          inputKinks.inputPopup = {
+            numPrev: 3,
+            numNext: 3,
+            allKinks: [],
+            kinkByIndex: function(i) {
+              var numKinks = inputKinks.inputPopup.allKinks.length;
+              i = (numKinks + i) % numKinks;
+              return inputKinks.inputPopup.allKinks[i];
+            },
+            generatePrimary: function(kink) {
+              var $container = $("<div>");
+              var btnIndex = 0;
+              $(".legend > div").each(function() {
+                var $btn = $(this).clone();
+                $btn.addClass("big-choice");
+                $btn.appendTo($container);
+
+                $("<span>")
+                  .addClass("btn-num-text")
+                  .text(btnIndex++)
+                  .appendTo($btn);
+
+                var text = $btn
+                  .text()
+                  .trim()
+                  .replace(/[0-9]/g, "");
+                if (kink.value === text) {
+                  $btn.addClass("selected");
+                }
+
+                $btn.on("click", function() {
+                  $container.find(".big-choice").removeClass("selected");
+                  $btn.addClass("selected");
+                  kink.value = text;
+                  $options.fadeOut(200, function() {
+                    $options.show();
+                    inputKinks.inputPopup.showNext();
+                  });
+                  var choiceClass = strToClass(text);
+                  kink.$choices.find("." + choiceClass).click();
+                });
+              });
+              return $container;
+            },
+            generateSecondary: function(kink) {
+              var $container = $('<div class="kink-simple">');
+              $('<span class="choice">')
+                .addClass(level[kink.value])
+                .appendTo($container);
+              $('<span class="txt-category">')
+                .text(kink.category)
+                .appendTo($container);
+              if (kink.showField) {
+                $('<span class="txt-field">')
+                  .text(kink.field)
+                  .appendTo($container);
+              }
+              $('<span class="txt-kink">')
+                .text(kink.kink)
+                .appendTo($container);
+              return $container;
+            },
+            showIndex: function(index) {
+              $previous.html("");
+              $next.html("");
+              $options.html("");
+              $popup.data("index", index);
+
+              // Current
+              var currentKink = inputKinks.inputPopup.kinkByIndex(index);
+              var $currentKink = inputKinks.inputPopup.generatePrimary(
+                currentKink
+              );
+              $options.append($currentKink);
+              $category.text(currentKink.category);
+              $field.text(
+                (currentKink.showField ? "(" + currentKink.field + ") " : "") +
+                  currentKink.kink
+              );
+              $options.append($currentKink);
+
+              // Prev
+              for (var i = inputKinks.inputPopup.numPrev; i > 0; i--) {
+                var prevKink = inputKinks.inputPopup.kinkByIndex(index - i);
+                var $prevKink = inputKinks.inputPopup.generateSecondary(
+                  prevKink
+                );
+                $previous.append($prevKink);
+                (function(skip) {
+                  $prevKink.on("click", function() {
+                    inputKinks.inputPopup.showPrev(skip);
+                  });
+                })(i);
+              }
+              // Next
+              for (var i = 1; i <= inputKinks.inputPopup.numNext; i++) {
+                var nextKink = inputKinks.inputPopup.kinkByIndex(index + i);
+                var $nextKink = inputKinks.inputPopup.generateSecondary(
+                  nextKink
+                );
+                $next.append($nextKink);
+                (function(skip) {
+                  $nextKink.on("click", function() {
+                    inputKinks.inputPopup.showNext(skip);
+                  });
+                })(i);
+              }
+            },
+            showPrev: function(skip) {
+              if (typeof skip !== "number") skip = 1;
+              var index = $popup.data("index") - skip;
+              var numKinks = inputKinks.inputPopup.allKinks.length;
+              index = (numKinks + index) % numKinks;
+              inputKinks.inputPopup.showIndex(index);
+            },
+            showNext: function(skip) {
+              if (typeof skip !== "number") skip = 1;
+              var index = $popup.data("index") + skip;
+              var numKinks = inputKinks.inputPopup.allKinks.length;
+              index = (numKinks + index) % numKinks;
+              inputKinks.inputPopup.showIndex(index);
+            },
+            show: function() {
+              inputKinks.inputPopup.allKinks = inputKinks.getAllKinks();
+              inputKinks.inputPopup.showIndex(0);
+              $popup.fadeIn();
+            }
+          };
+
+          $(window).on("keydown", function(e) {
+            if (e.altKey || e.shiftKey || e.ctrlKey) return;
+            if (!$popup.is(":visible")) return;
+
+            if (e.keyCode === 38) {
+              inputKinks.inputPopup.showPrev();
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            if (e.keyCode === 40) {
+              inputKinks.inputPopup.showNext();
+              e.preventDefault();
+              e.stopPropagation();
+            }
+
+            var btn = -1;
+            if (e.keyCode >= 96 && e.keyCode <= 101) {
+              btn = e.keyCode - 96;
+            } else if (e.keyCode >= 48 && e.keyCode <= 53) {
+              btn = e.keyCode - 48;
+            } else {
+              return;
+            }
+
+            var $btn = $options.find(".big-choice").eq(btn);
+            $btn.click();
+          });
+          $("#StartBtn").on("click", inputKinks.inputPopup.show);
+          $("#InputCurrent .closePopup, #InputOverlay").on("click", function() {
+            $popup.fadeOut();
+          });
+        })();
+      });
+    </script>
+  </body>
+</html>
